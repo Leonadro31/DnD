@@ -1,25 +1,19 @@
-#include <SFML/Graphics.hpp>
+#include "src/DnD.h"
+#include <Windows.h>
+
+#define HIDE_CONSOLE 0
 
 int main()
 {
-    //test 2
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
 
-    while (window.isOpen())
-    {
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window.close();
-        }
+#if HIDE_CONSOLE
+    ShowWindow(GetConsoleWindow(), SW_HIDE);
+#else
+    ShowWindow(GetConsoleWindow(), SW_SHOW);
+#endif
 
-        window.clear();
-        window.draw(shape);
-        window.display();
-    }
+    DnD dnd(500, 500, "Dungeons & Dragons Character Sheet Builder");
+    dnd.main();
 
     return 0;
 }

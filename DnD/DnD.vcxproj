@@ -135,7 +135,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\DnD.cpp" />
+    <ClCompile Include="src\CharacterSheet\CharacterSheet.cpp" />
     <ClCompile Include="entry_point.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\DnD.h" />
+    <ClInclude Include="src\CharacterSheet\CharacterSheet.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

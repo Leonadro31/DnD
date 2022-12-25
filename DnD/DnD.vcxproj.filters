@@ -18,5 +18,19 @@
     <ClCompile Include="entry_point.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
+    <ClCompile Include="src\CharacterSheet\CharacterSheet.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DnD.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\CharacterSheet\CharacterSheet.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DnD.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
