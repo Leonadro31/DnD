@@ -5,6 +5,8 @@
 #include <vector>
 #include <string>
 
+#include "../sdk/TextInput/TextInput.h"
+
 using namespace sf;
 
 class DnD
@@ -12,6 +14,8 @@ class DnD
 private:
 	RenderWindow* m_window;
 	int m_width, m_height;
+
+	TextInput* input;
 
 public:
 	
