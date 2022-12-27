@@ -15,7 +15,6 @@ Button::Button(sf::Font& font, const sf::Vector2f& position, const sf::Vector2f&
 	m_clicked_background_color = sf::Color(71, 121, 143, 255);
 	m_clicked_border_color = sf::Color();
 
-
 	m_rectangle->setPosition(m_position);
 	m_rectangle->setSize(m_size);
 	m_rectangle->setFillColor(sf::Color(71, 121, 143, 255));
@@ -31,12 +30,16 @@ Button::Button(sf::Font& font, const sf::Vector2f& position, const sf::Vector2f&
 	m_text->setFont(font);
 
 	m_center_text_in_rect();
+
+	std::cout << "[Debug] Created Button." << std::endl;
 }
 
 
 Button::~Button() {
 	delete m_rectangle;
 	delete m_text;
+	delete m_outline;
+	std::cout << "[Debug] Deleted Button." << std::endl;
 }
 
 void Button::m_center_text_in_rect() {
@@ -72,6 +75,11 @@ void Button::set_border_thickness(float thickness) {
 	m_outline->setOutlineThickness(thickness);
 }
 
+
+void Button::set_font_size(int size) {
+	m_text->setCharacterSize(size);
+	m_center_text_in_rect();
+}
 
 void Button::draw(sf::RenderWindow* window) {
 	m_animation_count--;

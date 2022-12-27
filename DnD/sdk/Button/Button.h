@@ -40,6 +40,7 @@ public:
 	void set_clicked_border_color(const sf::Color& color);
 	void set_clicked_background_color(const sf::Color& color);
 	void set_border_thickness(float thickness);
+	void set_font_size(int size);
 	void check_click(const sf::Vector2i& mouse_pos);
 	void draw(sf::RenderWindow* window);
 	sf::RectangleShape* get_rectangle_object();

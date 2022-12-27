@@ -102,7 +102,6 @@ bool TextInput::check_click(const sf::Vector2i& mouse_pos) {
 		return true;
 	}
 	is_selected = false;
-	std::cout << "[Debug] TextInput Not Selected" << std::endl;
 	return false;
 }
 
@@ -154,6 +153,10 @@ void TextInput::set_position(const sf::Vector2f& position) {
 	m_text->setPosition(m_position);
 }
 
+void TextInput::set_font_size(int size) {
+	m_text->setCharacterSize(size);
+	m_center_text_in_rect();
+}
 
 void TextInput::set_background_fill_color(const sf::Color& color) {
 	m_background_fill_color = color;

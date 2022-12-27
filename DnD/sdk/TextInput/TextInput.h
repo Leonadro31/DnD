@@ -36,6 +36,7 @@ public:
 	void get_input(int number);
 	bool check_click(const sf::Vector2i& mouse_pos);
 	void set_position(const sf::Vector2f& position);
+	void set_font_size(int size);
 	void set_background_fill_color(const sf::Color& color);
 	void set_background_border_color(const sf::Color& color);
 	void set_background_border_thickness(float thickness);
