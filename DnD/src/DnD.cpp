@@ -22,9 +22,9 @@ DnD::~DnD() {
 	for (const auto& round_check_box : m_round_check_boxes) delete  round_check_box;
 	for (const auto& text_input : m_input_boxes) delete text_input;
 	for (const auto& button : m_buttons) delete button;
+	for (const auto& font : m_fonts) delete font.second;
 	delete m_background;
 	delete m_background_texture;
-	delete m_arial;
 }
 
 
@@ -61,7 +61,7 @@ void DnD::events_handler() {
 		}
 		
 		if (event.type == Event::KeyReleased) {
-			std::cout << "[Debug] Key: " << event.text.unicode << std::endl;
+		//	std::cout << "[Debug] Key: " << event.text.unicode << std::endl;
 
 			if (event.text.unicode == 4294967295) {
 				//caps lock
@@ -105,19 +105,11 @@ void DnD::events_handler() {
 }
 
 void DnD::m_load_widgets() {
-	m_arial = new Font();
-	if (m_arial->loadFromFile("C:\\Users\\Leonardo\\source\\repos\\DnD\\DnD\\assets\\arial.ttf"))
-	{
-		std::cout << "[+] Loaded arial font." << std::endl;
-	}
-	else {
-		std::cout << "[-] Couldn't load arial font." << std::endl;
-	}
-
+	
 
 	m_buttons = {
-		new Button("C:\\Users\\Leonardo\\source\\repos\\DnD\\DnD\\assets\\button.png", *m_arial, Vector2f(138.f, 70.f), Vector2f(210.0, 40.f), "Make New Sheet", 0),
-		new Button("C:\\Users\\Leonardo\\source\\repos\\DnD\\DnD\\assets\\button.png", *m_arial, Vector2f(138.f, 130.f), Vector2f(210.0, 40.f), "Load Old Sheet", 0)
+		new Button("C:\\Users\\Leonardo\\source\\repos\\DnD\\DnD\\assets\\button.png", *m_fonts["BreatheFire"], Vector2f(138.f, 70.f), Vector2f(210.0, 40.f), "Make New Sheet", 0),
+		new Button("C:\\Users\\Leonardo\\source\\repos\\DnD\\DnD\\assets\\button.png", *m_fonts["BreatheFire"], Vector2f(138.f, 130.f), Vector2f(210.0, 40.f), "Load Old Sheet", 0)
 	};
 
 	for (const auto& button : m_buttons) {
@@ -138,8 +130,25 @@ void DnD::m_load_background() {
 	m_background->setTexture(*m_background_texture);
 }
 
+void DnD::m_load_fonts() {
+	Font* arial = new Font();
+	Font* breathefire = new Font();
+
+	if (arial->loadFromFile("C:\\Users\\Leonardo\\source\\repos\\DnD\\DnD\\assets\\arial.ttf")) std::cout << "[+] Loaded arial font." << std::endl;
+	else std::cout << "[-] Couldn't load arial font." << std::endl;
+
+	if (breathefire->loadFromFile("C:\\Users\\Leonardo\\source\\repos\\DnD\\DnD\\assets\\BreatheFire.ttf")) std::cout << "[+] Loaded BreatheFire font." << std::endl;
+	else std::cout << "[-] Couldn't load BreatheFire font." << std::endl;
+
+	m_fonts.insert({ "Arial", arial });
+	m_fonts.insert({ "BreatheFire", breathefire });
+
+
+}
+
 
 void DnD::main() {
+	m_load_fonts();
 	m_load_background();
 	m_load_widgets();
 

@@ -135,6 +135,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\FightVisualizer\entities\GenericEntity.cpp" />
+    <ClCompile Include="src\FightVisualizer\entities\Entity\Entity.cpp" />
+    <ClCompile Include="src\FightVisualizer\FightVisualizer.cpp" />
     <ClCompile Include="sdk\Widgets\RoundCheckBox\RoundCheckBox.cpp" />
     <ClCompile Include="sdk\Widgets\Button\Button.cpp" />
     <ClCompile Include="sdk\Widgets\SquareCheckBox\SquareCheckBox.cpp" />
@@ -142,8 +145,12 @@
     <ClCompile Include="src\CharacterSheet\CharacterSheet.cpp" />
     <ClCompile Include="entry_point.cpp" />
     <ClCompile Include="sdk\Widgets\TextInput\TextInput.cpp" />
+    <ClCompile Include="src\FightVisualizer\entities\WorldEntity\WorldEntity.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\FightVisualizer\entities\GenericEntity.h" />
+    <ClInclude Include="src\FightVisualizer\entities\Entity\Entity.h" />
+    <ClInclude Include="src\FightVisualizer\FightVisualizer.h" />
     <ClInclude Include="sdk\Widgets\RoundCheckBox\RoundCheckBox.h" />
     <ClInclude Include="sdk\Widgets\Button\Button.h" />
     <ClInclude Include="sdk\utils.h" />
@@ -152,6 +159,7 @@
     <ClInclude Include="src\DnD.h" />
     <ClInclude Include="src\CharacterSheet\CharacterSheet.h" />
     <ClInclude Include="sdk\Widgets\TextInput\TextInput.h" />
+    <ClInclude Include="src\FightVisualizer\entities\WorldEntity\WorldEntity.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

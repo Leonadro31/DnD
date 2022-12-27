@@ -14,8 +14,9 @@ class DnD
 {
 private:
 	RenderWindow* m_window;
-	Font* m_arial;
 	int m_width, m_height;
+	
+	std::map<std::string, Font*> m_fonts;
 
 	std::vector<TextInput*> m_input_boxes;
 	std::vector<Button*> m_buttons;
@@ -25,8 +26,11 @@ private:
 	sf::Sprite* m_background;
 	sf::Texture* m_background_texture;
 
+	std::string m_current_tab = "Menu";
+
 	void m_load_widgets();
 	void m_load_background();	
+	void m_load_fonts();
 
 public:
 	
