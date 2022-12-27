@@ -2,7 +2,7 @@
 
 
 DnD::DnD(int width, int height, const char* title) {
-	m_window = new RenderWindow(VideoMode(width, height), title);
+	m_window = new RenderWindow(VideoMode(width, height), title, sf::Style::Titlebar | sf::Style::Close);
 	m_width = width;
 	m_height = height;
 	m_window->setFramerateLimit(60);
@@ -10,7 +10,7 @@ DnD::DnD(int width, int height, const char* title) {
 
 
 DnD::DnD(int width, int height, int fps, const char* title) {
-	m_window = new RenderWindow(VideoMode(width, height), title);
+	m_window = new RenderWindow(VideoMode(width, height), title, sf::Style::Titlebar | sf::Style::Close);
 	m_width = width;
 	m_height = height;
 	m_window->setFramerateLimit(fps);
@@ -26,6 +26,8 @@ DnD::~DnD() {
 inline void callback() {
 	std::cout << "[Callback Sample]\n";
 }
+inline bool checked = false;
+
 
 void DnD::events_handler() {
 	Event event;
@@ -39,6 +41,7 @@ void DnD::events_handler() {
 			this->is_running = false;
 		}
 
+#pragma region mouse
 		if (event.type == Event::MouseButtonReleased) {
 			sf::Vector2i mouse_pos = sf::Vector2i(event.mouseButton.x, event.mouseButton.y);
 			//std::cout << "[Debug] Click Pos: (" << mouse_pos.x << ", " << mouse_pos.y << ")" << std::endl;
@@ -47,8 +50,14 @@ void DnD::events_handler() {
 				input_box->check_click(mouse_pos);
 			}
 			button->check_click(mouse_pos);
+			check_box->check_click(mouse_pos);
+
 		}
 
+#pragma endregion
+
+
+#pragma region keyboard
 		if (event.type == Event::KeyPressed) {
 			
 		}
@@ -93,7 +102,7 @@ void DnD::events_handler() {
 			
 			
 		}
-
+#pragma endregion
 	}
 }
 
@@ -108,12 +117,16 @@ void DnD::main() {
 
 	
 	input_boxes.push_back(new TextInput(font, Vector2f(100.f, 100.f), Vector2f(100.0, 40.f), "test"));
+
 	button = new Button(font, Vector2f(100.f, 200.f), Vector2f(100.0, 40.f), "test2", &callback);
 	button->set_background_color(sf::Color(140, 140, 240, 255));
 	button->set_border_color(sf::Color(116, 108, 140));
 	button->set_clicked_border_color(sf::Color(98, 91, 117, 255));
 	button->set_clicked_background_color(sf::Color(135, 135, 222, 255));
 	button->set_font_size(24);
+
+	
+	check_box = new RoundCheckBox(Vector2f(100.f, 300.f), 10.f, &checked);
 
 	while (this->is_running) {
 		events_handler();
@@ -124,7 +137,7 @@ void DnD::main() {
 			input_box->draw(m_window);
 		}
 		button->draw(m_window);
-
+		check_box->draw(m_window);
 		m_window->display();
 	}
 

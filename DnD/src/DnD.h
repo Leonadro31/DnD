@@ -18,6 +18,7 @@ private:
 
 	std::vector<TextInput*> input_boxes;
 	Button* button;
+	RoundCheckBox* check_box;
 
 public:
 	
