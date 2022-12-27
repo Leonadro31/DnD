@@ -27,7 +27,7 @@ inline void callback() {
 	std::cout << "[Callback Sample]\n";
 }
 inline bool checked = false;
-
+inline bool square_checked = false;
 
 void DnD::events_handler() {
 	Event event;
@@ -51,6 +51,7 @@ void DnD::events_handler() {
 			}
 			button->check_click(mouse_pos);
 			check_box->check_click(mouse_pos);
+			square_check_box->check_click(mouse_pos);
 
 		}
 
@@ -126,7 +127,8 @@ void DnD::main() {
 	button->set_font_size(24);
 
 	
-	check_box = new RoundCheckBox(Vector2f(100.f, 300.f), 10.f, &checked);
+	check_box = new RoundCheckBox(Vector2f(100.f, 300.f), 7.5f, &checked);
+	square_check_box = new SquareCheckBox(Vector2f(100.f, 350.f), 11.f, &square_checked);
 
 	while (this->is_running) {
 		events_handler();
@@ -138,6 +140,7 @@ void DnD::main() {
 		}
 		button->draw(m_window);
 		check_box->draw(m_window);
+		square_check_box->draw(m_window);
 		m_window->display();
 	}
 
