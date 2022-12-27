@@ -135,12 +135,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="sdk\Button\Button.cpp" />
     <ClCompile Include="src\DnD.cpp" />
     <ClCompile Include="src\CharacterSheet\CharacterSheet.cpp" />
     <ClCompile Include="entry_point.cpp" />
     <ClCompile Include="sdk\TextInput\TextInput.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="sdk\Button\Button.h" />
     <ClInclude Include="sdk\utils.h" />
     <ClInclude Include="src\DnD.h" />
     <ClInclude Include="src\CharacterSheet\CharacterSheet.h" />

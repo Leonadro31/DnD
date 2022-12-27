@@ -1,11 +1,13 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include <Windows.h>
 #include <vector>
 #include <string>
-
+#ifdef _WIN64
+#include <Windows.h>
+#endif
 #include "../sdk/TextInput/TextInput.h"
+#include "../sdk/Button/Button.h"
 
 using namespace sf;
 
@@ -16,6 +18,7 @@ private:
 	int m_width, m_height;
 
 	std::vector<TextInput*> input_boxes;
+	Button* button;
 
 public:
 	

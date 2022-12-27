@@ -23,6 +23,9 @@ DnD::~DnD() {
 	}
 }
 
+inline void callback() {
+	std::cout << "[Callback Test]\n";
+}
 
 void DnD::events_handler() {
 	Event event;
@@ -43,6 +46,7 @@ void DnD::events_handler() {
 			for (TextInput* input_box : input_boxes) {
 				input_box->check_click(mouse_pos);
 			}
+			button->check_click(mouse_pos);
 		}
 
 		if (event.type == Event::KeyPressed) {
@@ -99,7 +103,9 @@ void DnD::main() {
 
 	
 	input_boxes.push_back(new TextInput(font, Vector2f(100.f, 100.f), Vector2f(100.0, 40.f), "test"));
-	input_boxes.push_back(new TextInput(font, Vector2f(100.f, 200.f), Vector2f(100.0, 40.f), "test2"));
+	button = new Button(font, Vector2f(100.f, 200.f), Vector2f(100.0, 40.f), "test2", &callback);
+	button->set_clicked_border_color(sf::Color(47, 49, 51, 255));
+	button->set_clicked_background_color(sf::Color(68, 115, 135, 255));
 
 	while (this->is_running) {
 		events_handler();
@@ -109,6 +115,7 @@ void DnD::main() {
 		for (TextInput* input_box : input_boxes) {
 			input_box->draw(m_window);
 		}
+		button->draw(m_window);
 
 		m_window->display();
 	}

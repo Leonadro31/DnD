@@ -1,5 +1,7 @@
 #include "src/DnD.h"
+#ifdef _WIN64
 #include <Windows.h>
+#endif
 
 #define HIDE_CONSOLE 0
 

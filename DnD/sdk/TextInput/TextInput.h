@@ -1,10 +1,12 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include <Windows.h>
 #include <vector>
 #include <string>
 
+#ifdef _WIN64
+#include <Windows.h>
+#endif
 
 class TextInput
 {

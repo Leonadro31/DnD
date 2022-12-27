@@ -98,11 +98,11 @@ void TextInput::draw(sf::RenderWindow* win) {
 bool TextInput::check_click(const sf::Vector2i& mouse_pos) {
 	if ((mouse_pos.x >= m_position.x && mouse_pos.x <= m_position.x + m_size.x) && (mouse_pos.y >= m_position.y && mouse_pos.y <= m_position.y + m_size.y)) {
 		is_selected = true;
-		std::cout << "[Debug] TextInput Selected\n" << std::endl;
+		std::cout << "[Debug] TextInput Selected" << std::endl;
 		return true;
 	}
 	is_selected = false;
-	std::cout << "[Debug] TextInput Not Selected\n" << std::endl;
+	std::cout << "[Debug] TextInput Not Selected" << std::endl;
 	return false;
 }
 
