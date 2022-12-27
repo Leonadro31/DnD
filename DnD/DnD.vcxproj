@@ -135,18 +135,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="sdk\Button\Button.cpp" />
+    <ClCompile Include="sdk\Widgets\RoundCheckBox\RoundCheckBox.cpp" />
+    <ClCompile Include="sdk\Widgets\Button\Button.cpp" />
+    <ClCompile Include="sdk\Widgets\SquareCheckBox\SquareCheckBox.cpp" />
     <ClCompile Include="src\DnD.cpp" />
     <ClCompile Include="src\CharacterSheet\CharacterSheet.cpp" />
     <ClCompile Include="entry_point.cpp" />
-    <ClCompile Include="sdk\TextInput\TextInput.cpp" />
+    <ClCompile Include="sdk\Widgets\TextInput\TextInput.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="sdk\Button\Button.h" />
+    <ClInclude Include="sdk\Widgets\RoundCheckBox\RoundCheckBox.h" />
+    <ClInclude Include="sdk\Widgets\Button\Button.h" />
     <ClInclude Include="sdk\utils.h" />
+    <ClInclude Include="sdk\Widgets\include.h" />
+    <ClInclude Include="sdk\Widgets\SquareCheckBox\SquareCheckBox.h" />
     <ClInclude Include="src\DnD.h" />
     <ClInclude Include="src\CharacterSheet\CharacterSheet.h" />
-    <ClInclude Include="sdk\TextInput\TextInput.h" />
+    <ClInclude Include="sdk\Widgets\TextInput\TextInput.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

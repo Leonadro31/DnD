@@ -6,8 +6,7 @@
 #ifdef _WIN64
 #include <Windows.h>
 #endif
-#include "../sdk/TextInput/TextInput.h"
-#include "../sdk/Button/Button.h"
+#include "../sdk/Widgets/include.h"
 
 using namespace sf;
 

@@ -24,10 +24,16 @@
     <ClCompile Include="src\DnD.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
-    <ClCompile Include="sdk\TextInput\TextInput.cpp">
+    <ClCompile Include="sdk\Widgets\TextInput\TextInput.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
-    <ClCompile Include="sdk\Button\Button.cpp">
+    <ClCompile Include="sdk\Widgets\Button\Button.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\Widgets\RoundCheckBox\RoundCheckBox.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\Widgets\SquareCheckBox\SquareCheckBox.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
   </ItemGroup>
@@ -38,13 +44,22 @@
     <ClInclude Include="src\DnD.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
-    <ClInclude Include="sdk\TextInput\TextInput.h">
+    <ClInclude Include="sdk\Widgets\TextInput\TextInput.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="sdk\utils.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
-    <ClInclude Include="sdk\Button\Button.h">
+    <ClInclude Include="sdk\Widgets\Button\Button.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\Widgets\include.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\Widgets\RoundCheckBox\RoundCheckBox.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\Widgets\SquareCheckBox\SquareCheckBox.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
   </ItemGroup>
