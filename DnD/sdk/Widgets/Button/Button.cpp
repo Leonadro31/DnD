@@ -34,11 +34,36 @@ Button::Button(sf::Font& font, const sf::Vector2f& position, const sf::Vector2f&
 	std::cout << "[Debug] Created Button." << std::endl;
 }
 
+Button::Button(std::string texture_path, sf::Font& font, const sf::Vector2f& position, const sf::Vector2f& size, const std::string& placeholder, void (*callback)()) {
+	m_text = new sf::Text();
+	m_sprite = new sf::Sprite();
+	m_texture = new sf::Texture();
+
+	m_placeholder = placeholder;
+	m_position = position;
+	m_size = size;
+	m_callback = callback;
+	
+	if (!m_texture->loadFromFile(texture_path)) std::cout << "[-] Couldn't load file: " << texture_path << std::endl;
+
+	m_sprite->setTexture(*m_texture);
+	sf::FloatRect sprite_size = m_sprite->getGlobalBounds();
+	m_sprite->setScale(sf::Vector2f(size.x / sprite_size.width, size.y / sprite_size.height));
+	m_sprite->setPosition(m_position);
+
+	m_text->setString(placeholder);
+	m_text->setFillColor(sf::Color(0, 0, 0, 220));
+	m_text->setFont(font);
+
+	std::cout << "[Debug] Created Button with texture (" << texture_path << ")." << std::endl;
+}
+
 
 Button::~Button() {
 	delete m_rectangle;
 	delete m_text;
 	delete m_outline;
+	delete m_sprite;
 	std::cout << "[Debug] Deleted Button." << std::endl;
 }
 
@@ -50,27 +75,32 @@ void Button::m_center_text_in_rect() {
 
 
 void Button::set_background_color(const sf::Color& color) {
+	if (m_sprite != nullptr) return;
 	m_background_color = color;
 	m_rectangle->setFillColor(m_background_color);
 }
 
 
 void Button::set_border_color(const sf::Color& color) {
+	if (m_sprite != nullptr) return;
 	m_border_color = color;
 	m_outline->setOutlineColor(color);
 }
 
 
 void Button::set_clicked_border_color(const sf::Color& color) {
+	if (m_sprite != nullptr) return;
 	m_clicked_border_color = color;
 }
 
 
 void Button::set_clicked_background_color(const sf::Color& color) {
+	if (m_sprite != nullptr) return;
 	m_clicked_background_color = color;
 }
 
 void Button::set_border_thickness(float thickness) {
+	if (m_sprite != nullptr) return;
 	m_border_thickness = thickness;
 	m_outline->setOutlineThickness(thickness);
 }
@@ -82,18 +112,25 @@ void Button::set_font_size(int size) {
 }
 
 void Button::draw(sf::RenderWindow* window) {
-	m_animation_count--;
-	if (m_animation_count > 0) {
-		m_outline->setOutlineColor(m_clicked_border_color);
-		m_rectangle->setFillColor(m_clicked_background_color);
+	if (m_sprite != nullptr) {
+		window->draw(*m_sprite);
+		window->draw(*m_text);
 	}
 	else {
-		m_outline->setOutlineColor(m_border_color);
-		m_rectangle->setFillColor(m_background_color);
+		m_animation_count--;
+		if (m_animation_count > 0) {
+			m_outline->setOutlineColor(m_clicked_border_color);
+			m_rectangle->setFillColor(m_clicked_background_color);
+		}
+		else {
+			m_outline->setOutlineColor(m_border_color);
+			m_rectangle->setFillColor(m_background_color);
+		}
+		window->draw(*m_rectangle);
+		window->draw(*m_text);
+		window->draw(*m_outline);
 	}
-	window->draw(*m_rectangle);
-	window->draw(*m_text);
-	window->draw(*m_outline);
+	
 }
 
 void Button::check_click(const sf::Vector2i& mouse_pos) {
@@ -102,4 +139,14 @@ void Button::check_click(const sf::Vector2i& mouse_pos) {
 		m_animation_count = 15;
 		m_callback();
 	}
+}
+
+
+sf::Sprite* Button::get_sprite_object() {
+	return m_sprite;
+}
+
+
+sf::RectangleShape* Button::get_rectangle_object() {
+	return m_rectangle;
 }

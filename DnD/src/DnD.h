@@ -14,12 +14,19 @@ class DnD
 {
 private:
 	RenderWindow* m_window;
+	Font* m_arial;
 	int m_width, m_height;
 
-	std::vector<TextInput*> input_boxes;
-	Button* button;
-	RoundCheckBox* check_box;
-	SquareCheckBox* square_check_box;
+	std::vector<TextInput*> m_input_boxes;
+	std::vector<Button*> m_buttons;
+	std::vector<RoundCheckBox*> m_round_check_boxes;
+	std::vector<SquareCheckBox*> m_square_check_boxes;
+
+	sf::Sprite* m_background;
+	sf::Texture* m_background_texture;
+
+	void m_load_widgets();
+	void m_load_background();	
 
 public:
 	

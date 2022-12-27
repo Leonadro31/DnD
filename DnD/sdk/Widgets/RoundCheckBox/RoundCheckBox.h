@@ -12,8 +12,8 @@
 class RoundCheckBox
 {
 private:
-	sf::CircleShape* m_circle;
-	sf::CircleShape* m_inner_circle;
+	sf::CircleShape* m_circle = nullptr;
+	sf::CircleShape* m_inner_circle = nullptr;
 
 	sf::Vector2f m_position;
 	sf::Color m_background_color;

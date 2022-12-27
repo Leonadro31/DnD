@@ -18,16 +18,15 @@ DnD::DnD(int width, int height, int fps, const char* title) {
 
 
 DnD::~DnD() {
-	for (TextInput* input_box : input_boxes) {
-		delete input_box;
-	}
+	for (const auto& square_check_box : m_square_check_boxes) delete square_check_box;
+	for (const auto& round_check_box : m_round_check_boxes) delete  round_check_box;
+	for (const auto& text_input : m_input_boxes) delete text_input;
+	for (const auto& button : m_buttons) delete button;
+	delete m_background;
+	delete m_background_texture;
+	delete m_arial;
 }
 
-inline void callback() {
-	std::cout << "[Callback Sample]\n";
-}
-inline bool checked = false;
-inline bool square_checked = false;
 
 void DnD::events_handler() {
 	Event event;
@@ -44,14 +43,12 @@ void DnD::events_handler() {
 #pragma region mouse
 		if (event.type == Event::MouseButtonReleased) {
 			sf::Vector2i mouse_pos = sf::Vector2i(event.mouseButton.x, event.mouseButton.y);
-			//std::cout << "[Debug] Click Pos: (" << mouse_pos.x << ", " << mouse_pos.y << ")" << std::endl;
+			std::cout << "[Debug] Click Pos: (" << mouse_pos.x << ", " << mouse_pos.y << ")" << std::endl;
 
-			for (TextInput* input_box : input_boxes) {
-				input_box->check_click(mouse_pos);
-			}
-			button->check_click(mouse_pos);
-			check_box->check_click(mouse_pos);
-			square_check_box->check_click(mouse_pos);
+			for (const auto& square_check_box : m_square_check_boxes) square_check_box->check_click(mouse_pos);
+			for (const auto& round_check_box : m_round_check_boxes) round_check_box->check_click(mouse_pos);
+			for (const auto& text_input : m_input_boxes) text_input->check_click(mouse_pos);
+			for (const auto& button : m_buttons) button->check_click(mouse_pos);
 
 		}
 
@@ -76,23 +73,23 @@ void DnD::events_handler() {
 				if (is_caps && sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) pressed_letter = tolower(pressed_letter);
 				if (!is_caps && !sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) pressed_letter = tolower(pressed_letter);
 		
-				for (TextInput* input_box : input_boxes) {
+				for (TextInput* input_box : m_input_boxes) {
 					input_box->get_input(pressed_letter);
 				}
 			}
 			else if (event.text.unicode == 57) {
-				for (TextInput* input_box : input_boxes) {
+				for (TextInput* input_box : m_input_boxes) {
 					input_box->get_input(' ');
 				}
 			}
 			else if (26 <= event.text.unicode && event.text.unicode <= 35) {
 				int pressed_number = event.text.unicode - 26;
-				for (TextInput* input_box : input_boxes) {
+				for (TextInput* input_box : m_input_boxes) {
 					input_box->get_input(pressed_number);
 				}
 			}
 			else if (event.text.unicode == 59) {
-				for (TextInput* input_box : input_boxes) {
+				for (TextInput* input_box : m_input_boxes) {
 					input_box->get_input(true);
 				}
 			}
@@ -107,40 +104,58 @@ void DnD::events_handler() {
 	}
 }
 
-
-void DnD::main() {
-
-	sf::Font font;
-	if (!font.loadFromFile("C:\\Users\\Leonardo\\source\\repos\\DnD\\DnD\\assets\\arial.ttf"))
+void DnD::m_load_widgets() {
+	m_arial = new Font();
+	if (m_arial->loadFromFile("C:\\Users\\Leonardo\\source\\repos\\DnD\\DnD\\assets\\arial.ttf"))
 	{
-		std::cout << "[-] Couldn't load font." << std::endl;
+		std::cout << "[+] Loaded arial font." << std::endl;
+	}
+	else {
+		std::cout << "[-] Couldn't load arial font." << std::endl;
 	}
 
-	
-	input_boxes.push_back(new TextInput(font, Vector2f(100.f, 100.f), Vector2f(100.0, 40.f), "test"));
 
-	button = new Button(font, Vector2f(100.f, 200.f), Vector2f(100.0, 40.f), "test2", &callback);
-	button->set_background_color(sf::Color(140, 140, 240, 255));
-	button->set_border_color(sf::Color(116, 108, 140));
-	button->set_clicked_border_color(sf::Color(98, 91, 117, 255));
-	button->set_clicked_background_color(sf::Color(135, 135, 222, 255));
-	button->set_font_size(24);
+	m_buttons = {
+		new Button("C:\\Users\\Leonardo\\source\\repos\\DnD\\DnD\\assets\\button.png", *m_arial, Vector2f(138.f, 70.f), Vector2f(210.0, 40.f), "Make New Sheet", 0),
+		new Button("C:\\Users\\Leonardo\\source\\repos\\DnD\\DnD\\assets\\button.png", *m_arial, Vector2f(138.f, 130.f), Vector2f(210.0, 40.f), "Load Old Sheet", 0)
+	};
 
-	
-	check_box = new RoundCheckBox(Vector2f(100.f, 300.f), 7.5f, &checked);
-	square_check_box = new SquareCheckBox(Vector2f(100.f, 350.f), 11.f, &square_checked);
+	for (const auto& button : m_buttons) {
+		button->set_font_size(20);
+	}
+}
+
+void DnD::m_load_background() {
+	m_background_texture = new sf::Texture();
+	m_background = new sf::Sprite();
+	if (m_background_texture->loadFromFile("C:\\Users\\Leonardo\\source\\repos\\DnD\\DnD\\assets\\menu.png")) std::cout << "[+] Loaded background image." << std::endl;
+	else {
+		std::cout << "[-] Couldn't load background image." << std::endl;
+		delete m_background;
+		delete m_background_texture;
+		return;
+	}
+	m_background->setTexture(*m_background_texture);
+}
+
+
+void DnD::main() {
+	m_load_background();
+	m_load_widgets();
 
 	while (this->is_running) {
 		events_handler();
 		
 		m_window->clear(Color(185, 187, 206, 255));
 		
-		for (TextInput* input_box : input_boxes) {
-			input_box->draw(m_window);
-		}
-		button->draw(m_window);
-		check_box->draw(m_window);
-		square_check_box->draw(m_window);
+		m_window->draw(*m_background);
+		
+		for (const auto& square_check_box : m_square_check_boxes) square_check_box->draw(m_window);
+		for (const auto& round_check_box : m_round_check_boxes) round_check_box->draw(m_window);
+		for (const auto& text_input : m_input_boxes) text_input->draw(m_window);
+		for (auto& button : m_buttons) button->draw(m_window);
+
+
 		m_window->display();
 	}
 

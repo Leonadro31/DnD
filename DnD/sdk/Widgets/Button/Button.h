@@ -11,9 +11,11 @@
 
 class Button {
 private:
-	sf::RectangleShape* m_rectangle;
-	sf::RectangleShape* m_outline;
-	sf::Text* m_text;
+	sf::RectangleShape* m_rectangle = nullptr;
+	sf::RectangleShape* m_outline = nullptr;
+	sf::Texture* m_texture = nullptr;
+	sf::Text* m_text = nullptr;
+	sf::Sprite* m_sprite = nullptr; // to finish
 	
 	sf::Vector2f m_position, m_size;
 	std::string m_placeholder;
@@ -32,9 +34,10 @@ private:
 
 public:
 	Button(sf::Font& font, const sf::Vector2f& position, const sf::Vector2f& size, const std::string& placeholder, void (*callback)());
+	Button(std::string texture_path, sf::Font& font, const sf::Vector2f& position, const sf::Vector2f& size, const std::string& placeholder, void (*callback)());
 	~Button();
 
-
+	
 	void set_background_color(const sf::Color& color);
 	void set_border_color(const sf::Color& color);
 	void set_clicked_border_color(const sf::Color& color);
@@ -44,4 +47,5 @@ public:
 	void check_click(const sf::Vector2i& mouse_pos);
 	void draw(sf::RenderWindow* window);
 	sf::RectangleShape* get_rectangle_object();
+	sf::Sprite* get_sprite_object();
 };

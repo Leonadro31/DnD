@@ -12,8 +12,8 @@
 class SquareCheckBox
 {
 private:
-	sf::RectangleShape* m_square;
-	sf::RectangleShape* m_inner_square;
+	sf::RectangleShape* m_square = nullptr;
+	sf::RectangleShape* m_inner_square = nullptr;
 
 	sf::Vector2f m_position;
 	sf::Color m_background_color;
