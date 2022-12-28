@@ -27,7 +27,7 @@ DnD::~DnD() {
 	delete m_background_texture;
 }
 
-
+/*
 void DnD::events_handler() {
 	Event event;
 	bool is_caps = false;
@@ -103,39 +103,15 @@ void DnD::events_handler() {
 #pragma endregion
 	}
 }
+*/
 
-void DnD::m_load_widgets() {
-	
-
-	m_buttons = {
-		new Button("C:\\Users\\Leonardo\\source\\repos\\DnD\\DnD\\assets\\button.png", *m_fonts["BreatheFire"], Vector2f(138.f, 70.f), Vector2f(210.0, 40.f), "Make New Sheet", 0),
-		new Button("C:\\Users\\Leonardo\\source\\repos\\DnD\\DnD\\assets\\button.png", *m_fonts["BreatheFire"], Vector2f(138.f, 130.f), Vector2f(210.0, 40.f), "Load Old Sheet", 0)
-	};
-
-	for (const auto& button : m_buttons) {
-		button->set_font_size(20);
-	}
-}
-
-void DnD::m_load_background() {
-	m_background_texture = new sf::Texture();
-	m_background = new sf::Sprite();
-	if (m_background_texture->loadFromFile("C:\\Users\\Leonardo\\source\\repos\\DnD\\DnD\\assets\\menu.png")) std::cout << "[+] Loaded background image." << std::endl;
-	else {
-		std::cout << "[-] Couldn't load background image." << std::endl;
-		delete m_background;
-		delete m_background_texture;
-		return;
-	}
-	m_background->setTexture(*m_background_texture);
-}
 
 void DnD::m_load_fonts() {
 	Font* arial = new Font();
 	Font* breathefire = new Font();
 
-	if (arial->loadFromFile("C:\\Users\\Leonardo\\source\\repos\\DnD\\DnD\\assets\\arial.ttf")) std::cout << "[+] Loaded arial font." << std::endl;
-	else std::cout << "[-] Couldn't load arial font." << std::endl;
+	if (arial->loadFromFile("C:\\Users\\Leonardo\\source\\repos\\DnD\\DnD\\assets\\arial.ttf")) std::cout << "[+] Loaded Arial font." << std::endl;
+	else std::cout << "[-] Couldn't load Arial font." << std::endl;
 
 	if (breathefire->loadFromFile("C:\\Users\\Leonardo\\source\\repos\\DnD\\DnD\\assets\\BreatheFire.ttf")) std::cout << "[+] Loaded BreatheFire font." << std::endl;
 	else std::cout << "[-] Couldn't load BreatheFire font." << std::endl;
@@ -149,23 +125,12 @@ void DnD::m_load_fonts() {
 
 void DnD::main() {
 	m_load_fonts();
-	m_load_background();
-	m_load_widgets();
+
+	m_menu = new Menu(m_window, m_fonts["BreatheFire"], &is_running, &m_current_tab);
 
 	while (this->is_running) {
-		events_handler();
-		
-		m_window->clear(Color(185, 187, 206, 255));
-		
-		m_window->draw(*m_background);
-		
-		for (const auto& square_check_box : m_square_check_boxes) square_check_box->draw(m_window);
-		for (const auto& round_check_box : m_round_check_boxes) round_check_box->draw(m_window);
-		for (const auto& text_input : m_input_boxes) text_input->draw(m_window);
-		for (auto& button : m_buttons) button->draw(m_window);
+		if (m_current_tab == "Menu") m_menu->main();
 
-
-		m_window->display();
 	}
 
 }

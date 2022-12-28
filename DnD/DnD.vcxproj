@@ -135,6 +135,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Menu\Menu.cpp" />
     <ClCompile Include="src\FightVisualizer\entities\GenericEntity.cpp" />
     <ClCompile Include="src\FightVisualizer\entities\Entity\Entity.cpp" />
     <ClCompile Include="src\FightVisualizer\FightVisualizer.cpp" />
@@ -148,6 +149,7 @@
     <ClCompile Include="src\FightVisualizer\entities\WorldEntity\WorldEntity.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Menu\Menu.h" />
     <ClInclude Include="src\FightVisualizer\entities\GenericEntity.h" />
     <ClInclude Include="src\FightVisualizer\entities\Entity\Entity.h" />
     <ClInclude Include="src\FightVisualizer\FightVisualizer.h" />

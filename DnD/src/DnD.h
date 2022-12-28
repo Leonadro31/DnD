@@ -6,7 +6,10 @@
 #ifdef _WIN64
 #include <Windows.h>
 #endif
+
 #include "../sdk/Widgets/include.h"
+
+#include "Menu/Menu.h"
 
 using namespace sf;
 
@@ -23,13 +26,13 @@ private:
 	std::vector<RoundCheckBox*> m_round_check_boxes;
 	std::vector<SquareCheckBox*> m_square_check_boxes;
 
-	sf::Sprite* m_background;
-	sf::Texture* m_background_texture;
+	sf::Sprite* m_background = nullptr;
+	sf::Texture* m_background_texture = nullptr;
 
 	std::string m_current_tab = "Menu";
 
-	void m_load_widgets();
-	void m_load_background();	
+	Menu* m_menu = nullptr;
+
 	void m_load_fonts();
 
 public:
@@ -40,7 +43,7 @@ public:
 	DnD(int width, int height, int fps, const char* title);
 	~DnD();
 
-	void events_handler();
+	//void events_handler();
 	void main();
 };
 
