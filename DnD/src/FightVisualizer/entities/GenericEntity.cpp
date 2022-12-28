@@ -53,11 +53,23 @@ void GenericEntity::set_texture(const std::string& texture_path) {
 }
 
 
+void GenericEntity::check_click(const sf::Vector2i& mouse_pos) {
+	if ((mouse_pos.x >= m_position.x && mouse_pos.x <= m_position.x + m_size.x) && (mouse_pos.y >= m_position.y && mouse_pos.y <= m_position.y + m_size.y)) {
+		std::cout << "[Debug] Entity clicked." << std::endl;
+		m_is_selected = true;
+		return;
+	}
+	std::cout << "[Debug] Entity not clicked." << std::endl;
+	m_is_selected = false;
+}
+
+
 void GenericEntity::draw(sf::RenderWindow* window) {
 	if (m_texture == nullptr || m_sprite == nullptr) {
 		std::cout << "[-] Entity Texture or Sprite is nullptr" << std::endl;
 		return;
 	}
-
 	window->draw(*m_sprite);
 }
+
+

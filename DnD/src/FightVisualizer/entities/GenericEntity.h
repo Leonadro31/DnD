@@ -11,12 +11,14 @@
 
 class GenericEntity
 {
-private:
+protected:
 	sf::Vector2f m_position;
 	sf::Vector2f m_size;
 
 	sf::Sprite* m_sprite = nullptr;
 	sf::Texture* m_texture = nullptr;
+
+	bool m_is_selected = false;
 
 	
 
@@ -25,9 +27,12 @@ public:
 
 	~GenericEntity();
 
-	void set_position(const sf::Vector2f& position);
-	void set_size(const sf::Vector2f& size);
-	void set_texture(const std::string& texture_path);
-	void draw(sf::RenderWindow* window);
+	virtual void set_position(const sf::Vector2f& position);
+	virtual void set_size(const sf::Vector2f& size);
+	virtual void set_texture(const std::string& texture_path);
+	virtual void draw(sf::RenderWindow* window);
+	virtual bool is_selected() { return m_is_selected; }
+	virtual void check_click(const sf::Vector2i& mouse_pos);
+
 };
 

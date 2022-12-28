@@ -137,16 +137,7 @@ void Button::check_click(const sf::Vector2i& mouse_pos) {
 	if ((mouse_pos.x >= m_position.x && mouse_pos.x <= m_position.x + m_size.x) && (mouse_pos.y >= m_position.y && mouse_pos.y <= m_position.y + m_size.y)) {
 		std::cout << "[Debug] Button clicked." << std::endl;
 		m_animation_count = 15;
-		m_callback();
+		if (*m_callback != 0) m_callback();
 	}
 }
 
-
-sf::Sprite* Button::get_sprite_object() {
-	return m_sprite;
-}
-
-
-sf::RectangleShape* Button::get_rectangle_object() {
-	return m_rectangle;
-}

@@ -9,7 +9,7 @@
 #endif
 
 #include "../../sdk/Widgets/include.h"
-#include "../FightVisualizer/entities/GenericEntity.h"
+#include "../FightVisualizer/entities/Entity/Entity.h"
 
 class Menu
 {
@@ -19,6 +19,8 @@ private:
 	sf::Sprite* m_background;
 	sf::Texture* m_background_texture;
 	std::string* m_current_tab;
+
+	std::vector<GenericEntity*> m_entities;
 
 	std::vector<Button*> m_buttons;
 

@@ -40,6 +40,6 @@ public:
 	void set_outline_thickness(float thickness);
 	void check_click(const sf::Vector2i& mouse_pos);
 	void draw(sf::RenderWindow* window);
-	sf::CircleShape* get_circle_object();
+	sf::RectangleShape* get_square_object() { return m_square; }
 };
 

@@ -34,6 +34,7 @@ public:
 	void get_input(char character);
 	void get_input(bool backspace);
 	void get_input(int number);
+	std::string get_text() { return m_placeholder; }
 	bool check_click(const sf::Vector2i& mouse_pos);
 	void set_position(const sf::Vector2f& position);
 	void set_font_size(int size);
@@ -41,7 +42,7 @@ public:
 	void set_background_border_color(const sf::Color& color);
 	void set_background_border_thickness(float thickness);
 
-	sf::Text* get_text_object();
-	sf::RectangleShape* get_background_object();
+	sf::Text* get_text_object() { return m_text; }
+	sf::RectangleShape* get_background_object() { return m_background; }
 };
 
