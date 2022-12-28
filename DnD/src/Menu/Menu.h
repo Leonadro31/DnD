@@ -9,6 +9,7 @@
 #endif
 
 #include "../../sdk/Widgets/include.h"
+#include "../FightVisualizer/entities/GenericEntity.h"
 
 class Menu
 {

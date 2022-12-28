@@ -84,5 +84,7 @@ void Menu::main() {
 
 	for (auto& button : m_buttons) button->draw(m_window);
 
+	generic_entity->draw(m_window);
+
 	m_window->display();
 }

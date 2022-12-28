@@ -28,6 +28,6 @@ public:
 	void set_position(const sf::Vector2f& position);
 	void set_size(const sf::Vector2f& size);
 	void set_texture(const std::string& texture_path);
-	void draw(sf::RenderTexture* window);
+	void draw(sf::RenderWindow* window);
 };
 

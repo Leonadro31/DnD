@@ -11,6 +11,7 @@ GenericEntity::GenericEntity(const std::string& texture_path, const sf::Vector2f
 	m_size = size;
 
 	this->set_size(m_size);
+	this->set_position(position);
 }
 
 GenericEntity::~GenericEntity() {
@@ -52,7 +53,7 @@ void GenericEntity::set_texture(const std::string& texture_path) {
 }
 
 
-void GenericEntity::draw(sf::RenderTexture* window) {
+void GenericEntity::draw(sf::RenderWindow* window) {
 	if (m_texture == nullptr || m_sprite == nullptr) {
 		std::cout << "[-] Entity Texture or Sprite is nullptr" << std::endl;
 		return;
