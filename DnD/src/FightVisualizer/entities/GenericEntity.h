@@ -15,12 +15,14 @@ protected:
 	sf::Vector2f m_position;
 	sf::Vector2f m_size;
 
+	sf::CircleShape m_marker;
+
 	sf::Sprite* m_sprite = nullptr;
 	sf::Texture* m_texture = nullptr;
 
 	bool m_is_selected = false;
 
-	
+	void m_center_marker();
 
 public:
 	GenericEntity(const std::string& texture_path,const sf::Vector2f& position, const sf::Vector2f& size);

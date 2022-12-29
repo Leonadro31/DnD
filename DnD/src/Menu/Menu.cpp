@@ -7,7 +7,7 @@ Menu::Menu(sf::RenderWindow* window, sf::Font* breathefire_font, bool* is_runnin
 	m_current_tab = current_tab;
 	this->is_running = is_running;
 
-	m_entities.push_back(new Entity("C:\\Users\\Leonardo\\source\\repos\\DnD\\DnD\\assets\\entity_test.png", sf::Vector2f(200.f, 100.f), sf::Vector2f(300.f, 100.f), 100));
+	m_entities.push_back(new Entity("C:\\Users\\Leonardo\\source\\repos\\DnD\\DnD\\assets\\entity_test.png", sf::Vector2f(200.f, 100.f), sf::Vector2f(100.f, 100.f), 100));
 
 	m_load_widgets();
 	m_load_background();

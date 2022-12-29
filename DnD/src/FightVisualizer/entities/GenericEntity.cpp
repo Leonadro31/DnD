@@ -5,6 +5,9 @@ GenericEntity::GenericEntity(const std::string& texture_path, const sf::Vector2f
 	m_texture = new sf::Texture();
 	m_sprite = new sf::Sprite();
 
+	m_marker.setRadius(5.f);
+	m_marker.setFillColor(sf::Color::Red);
+
 	this->set_texture(texture_path);
 
 	m_position = position;
@@ -12,11 +15,18 @@ GenericEntity::GenericEntity(const std::string& texture_path, const sf::Vector2f
 
 	this->set_size(m_size);
 	this->set_position(position);
+	m_center_marker();
 }
 
 GenericEntity::~GenericEntity() {
 	delete m_sprite;
 	delete m_texture;
+}
+
+void GenericEntity::m_center_marker() {
+	sf::FloatRect marker_rect = m_marker.getLocalBounds();
+	m_marker.setOrigin(marker_rect.left + marker_rect.width / 2.0f, marker_rect.top);
+	m_marker.setPosition(sf::Vector2f(m_position.x + m_size.x / 2, m_position.y - marker_rect.height - 5));
 }
 
 void GenericEntity::set_position(const sf::Vector2f& position) {
@@ -27,6 +37,7 @@ void GenericEntity::set_position(const sf::Vector2f& position) {
 
 	m_position = position;
 	m_sprite->setPosition(m_position);
+	m_center_marker();
 }
 
 
@@ -56,7 +67,7 @@ void GenericEntity::set_texture(const std::string& texture_path) {
 void GenericEntity::check_click(const sf::Vector2i& mouse_pos) {
 	if ((mouse_pos.x >= m_position.x && mouse_pos.x <= m_position.x + m_size.x) && (mouse_pos.y >= m_position.y && mouse_pos.y <= m_position.y + m_size.y)) {
 		std::cout << "[Debug] Entity clicked." << std::endl;
-		m_is_selected = true;
+		m_is_selected = !m_is_selected;
 		return;
 	}
 	std::cout << "[Debug] Entity not clicked." << std::endl;
@@ -70,6 +81,7 @@ void GenericEntity::draw(sf::RenderWindow* window) {
 		return;
 	}
 	window->draw(*m_sprite);
+	window->draw(m_marker);
 }
 
 

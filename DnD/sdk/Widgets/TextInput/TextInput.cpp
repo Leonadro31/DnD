@@ -176,11 +176,3 @@ void TextInput::set_background_border_thickness(float thickness) {
 }
 
 
-sf::Text* TextInput::get_text_object() {
-	return m_text;
-}
-
-
-sf::RectangleShape* TextInput::get_background_object() {
-	return m_background;
-}
