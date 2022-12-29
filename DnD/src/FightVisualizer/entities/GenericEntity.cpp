@@ -2,9 +2,6 @@
 
 
 GenericEntity::GenericEntity(const std::string& texture_path, const sf::Vector2f& position, const sf::Vector2f& size) {
-	m_texture = new sf::Texture();
-	m_sprite = new sf::Sprite();
-
 	m_marker.setRadius(5.f);
 	m_marker.setFillColor(sf::Color::Red);
 
@@ -19,8 +16,7 @@ GenericEntity::GenericEntity(const std::string& texture_path, const sf::Vector2f
 }
 
 GenericEntity::~GenericEntity() {
-	delete m_sprite;
-	delete m_texture;
+
 }
 
 void GenericEntity::m_center_marker() {
@@ -30,37 +26,27 @@ void GenericEntity::m_center_marker() {
 }
 
 void GenericEntity::set_position(const sf::Vector2f& position) {
-	if (m_texture == nullptr || m_sprite == nullptr) {
+	/*if (m_texture == nullptr || m_sprite == nullptr) {
 		std::cout << "[-] Entity Texture or Sprite is nullptr" << std::endl;
 		return;
 	}
-
+	*/
 	m_position = position;
-	m_sprite->setPosition(m_position);
+	m_sprite.setPosition(m_position);
 	m_center_marker();
 }
 
 
 void GenericEntity::set_size(const sf::Vector2f& size) {
-	if (m_texture == nullptr || m_sprite == nullptr) {
-		std::cout << "[-] Entity Texture or Sprite is nullptr" << std::endl;
-		return;
-	}
-
 	m_size = size;
-	sf::FloatRect sprite_size = m_sprite->getGlobalBounds();
-	m_sprite->setScale(sf::Vector2f(size.x / sprite_size.width, size.y / sprite_size.height));
+	sf::FloatRect sprite_size = m_sprite.getGlobalBounds();
+	m_sprite.setScale(sf::Vector2f(size.x / sprite_size.width, size.y / sprite_size.height));
 }
 
 
 void GenericEntity::set_texture(const std::string& texture_path) {
-	if (m_texture == nullptr || m_sprite == nullptr) {
-		std::cout << "[-] Entity Texture or Sprite is nullptr" << std::endl;
-		return;
-	}
-
-	if (!m_texture->loadFromFile(texture_path)) std::cout << "[-] Couldn't load texture: " << texture_path << std::endl;
-	m_sprite->setTexture(*m_texture);
+	if (!m_texture.loadFromFile(texture_path)) std::cout << "[-] Couldn't load texture: " << texture_path << std::endl;
+	m_sprite.setTexture(m_texture);
 }
 
 
@@ -76,11 +62,7 @@ void GenericEntity::check_click(const sf::Vector2i& mouse_pos) {
 
 
 void GenericEntity::draw(sf::RenderWindow* window) {
-	if (m_texture == nullptr || m_sprite == nullptr) {
-		std::cout << "[-] Entity Texture or Sprite is nullptr" << std::endl;
-		return;
-	}
-	window->draw(*m_sprite);
+	window->draw(m_sprite);
 	window->draw(m_marker);
 }
 

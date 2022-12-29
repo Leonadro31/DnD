@@ -11,11 +11,11 @@
 
 class Button {
 private:
-	sf::RectangleShape* m_rectangle = nullptr;
-	sf::RectangleShape* m_outline = nullptr;
-	sf::Texture* m_texture = nullptr;
-	sf::Text* m_text = nullptr;
-	sf::Sprite* m_sprite = nullptr; // to finish
+	sf::RectangleShape m_rectangle;
+	sf::RectangleShape m_outline;
+	sf::Texture m_texture;
+	sf::Text m_text;
+	sf::Sprite m_sprite; // to finish
 	
 	sf::Vector2f m_position, m_size;
 	std::string m_placeholder;
@@ -26,6 +26,8 @@ private:
 	sf::Color m_clicked_background_color;
 	float m_border_thickness = 3.f;
 	int m_animation_count = 0;
+
+	bool m_has_sprite = false;
 
 	void (*m_callback)();
 
@@ -46,6 +48,6 @@ public:
 	void set_font_size(int size);
 	void check_click(const sf::Vector2i& mouse_pos);
 	void draw(sf::RenderWindow* window);
-	sf::RectangleShape* get_rectangle_object() { return m_rectangle; }
-	sf::Sprite* get_sprite_object() { return m_sprite; }
+	sf::RectangleShape* get_rectangle_object() { return &m_rectangle; }
+	sf::Sprite* get_sprite_object() { return &m_sprite; }
 };

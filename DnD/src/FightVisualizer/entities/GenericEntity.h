@@ -17,8 +17,8 @@ protected:
 
 	sf::CircleShape m_marker;
 
-	sf::Sprite* m_sprite = nullptr;
-	sf::Texture* m_texture = nullptr;
+	sf::Sprite m_sprite;
+	sf::Texture m_texture;
 
 	bool m_is_selected = false;
 

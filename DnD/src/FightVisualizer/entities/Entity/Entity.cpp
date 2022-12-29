@@ -13,7 +13,7 @@ Entity::~Entity() {
 
 void Entity::draw(sf::RenderWindow* window) {
 	if (m_health > 0) {
-		window->draw(*m_sprite);
+		window->draw(m_sprite);
 		if (m_is_selected) window->draw(m_marker);
 	}
 
