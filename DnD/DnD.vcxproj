@@ -147,6 +147,8 @@
     <ClCompile Include="entry_point.cpp" />
     <ClCompile Include="sdk\Widgets\TextInput\TextInput.cpp" />
     <ClCompile Include="src\FightVisualizer\entities\WorldEntity\WorldEntity.cpp" />
+    <ClCompile Include="src\FightVisualizer\entities\Tile\Tile.cpp" />
+    <ClCompile Include="src\FightVisualizer\WorldEditor\WorldEditor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Menu\Menu.h" />
@@ -162,6 +164,8 @@
     <ClInclude Include="src\CharacterSheet\CharacterSheet.h" />
     <ClInclude Include="sdk\Widgets\TextInput\TextInput.h" />
     <ClInclude Include="src\FightVisualizer\entities\WorldEntity\WorldEntity.h" />
+    <ClInclude Include="src\FightVisualizer\entities\Tile\Tile.h" />
+    <ClInclude Include="src\FightVisualizer\WorldEditor\WorldEditor.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

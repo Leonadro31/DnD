@@ -51,6 +51,12 @@
     <ClCompile Include="src\Menu\Menu.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
+    <ClCompile Include="src\FightVisualizer\entities\Tile\Tile.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FightVisualizer\WorldEditor\WorldEditor.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\CharacterSheet\CharacterSheet.h">
@@ -90,6 +96,12 @@
       <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="src\Menu\Menu.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FightVisualizer\entities\Tile\Tile.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FightVisualizer\WorldEditor\WorldEditor.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
   </ItemGroup>

@@ -11,7 +11,9 @@
 
 #include "entities/GenericEntity.h"
 #include "entities/Entity/Entity.h"
+#include "entities/Tile/Tile.h"
 #include "entities/WorldEntity/WorldEntity.h"
+
 
 class FightVisualizer
 {
@@ -23,6 +25,7 @@ private:
 	sf::Texture m_background_texture;
 	std::map<std::string, sf::Font*>* m_fonts = nullptr;
 
+	std::vector<std::vector<Tile*>> m_tiles; //19x19 tiles, 20x20 each
 
 	std::vector<GenericEntity*> m_entities;
 
@@ -34,6 +37,7 @@ private:
 	void m_events_handler();
 	void m_load_widgets();
 	void m_load_background();
+	void m_load_tiles();
 public:
 	FightVisualizer(std::map<std::string, sf::Font*>* fonts, bool* is_running, std::string* current_tab);
 	~FightVisualizer();

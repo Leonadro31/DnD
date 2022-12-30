@@ -22,11 +22,10 @@ protected:
 
 	bool m_is_selected = false;
 
-	void m_center_marker();
+	virtual void m_center_marker();
 
 public:
 	GenericEntity(const std::string& texture_path,const sf::Vector2f& position, const sf::Vector2f& size);
-
 	~GenericEntity();
 
 	virtual void set_position(const sf::Vector2f& position);
