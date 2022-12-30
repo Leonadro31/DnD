@@ -15,8 +15,6 @@ Menu::~Menu() {
 	for (const auto& button : m_buttons) delete button;
 	delete m_window;
 	delete m_breathefire_font;
-	delete m_background;
-	delete m_background_texture;
 	delete m_current_tab;
 }
 
@@ -34,16 +32,12 @@ void Menu::m_load_widgets() {
 }
 
 void Menu::m_load_background() {
-	m_background_texture = new sf::Texture();
-	m_background = new sf::Sprite();
-	if (m_background_texture->loadFromFile("C:\\Users\\Leonardo\\source\\repos\\DnD\\DnD\\assets\\menu.png")) std::cout << "[+] Loaded background image." << std::endl;
+	if (m_background_texture.loadFromFile("C:\\Users\\Leonardo\\source\\repos\\DnD\\DnD\\assets\\menu.png")) std::cout << "[+] Loaded background image." << std::endl;
 	else {
 		std::cout << "[-] Couldn't load background image." << std::endl;
-		delete m_background;
-		delete m_background_texture;
 		return;
 	}
-	m_background->setTexture(*m_background_texture);
+	m_background.setTexture(m_background_texture);
 }
 
 
@@ -76,6 +70,7 @@ void Menu::m_events_handler() {
 
 			if (m_buttons[1]->check_click(mouse_pos)) {
 				*m_current_tab = "FightVisualizer";
+				m_window->close();
 				m_first_load = true;
 			}
 
@@ -96,7 +91,7 @@ void Menu::main() {
 
 	m_window->clear(sf::Color::Black);
 
-	m_window->draw(*m_background);
+	m_window->draw(m_background);
 
 	for (const auto& button : m_buttons) button->draw(m_window);
 

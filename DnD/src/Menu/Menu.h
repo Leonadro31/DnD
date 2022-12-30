@@ -17,8 +17,8 @@ class Menu
 private:
 	sf::RenderWindow* m_window = nullptr;
 	sf::Font* m_breathefire_font = nullptr;
-	sf::Sprite* m_background;
-	sf::Texture* m_background_texture;
+	sf::Sprite m_background;
+	sf::Texture m_background_texture;
 	std::string* m_current_tab;
 
 	std::vector<Button*> m_buttons;

@@ -16,6 +16,7 @@ public:
 	~Entity();
 
 	void draw(sf::RenderWindow* window) override;
+	void check_click(const sf::Vector2i& mouse_pos) override;
 	void take_damage(int damage) { m_health -= damage; }
 	void set_health(int health) { m_health = health; }
 };
