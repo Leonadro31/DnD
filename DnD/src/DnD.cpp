@@ -126,11 +126,12 @@ void DnD::m_load_fonts() {
 void DnD::main() {
 	m_load_fonts();
 
-	m_menu = new Menu(m_window, m_fonts["BreatheFire"], &is_running, &m_current_tab);
+	m_menu = new Menu(m_window, m_fonts["BreatheFire"], &m_is_running, &m_current_tab);
+	m_fight_visualizer = new FightVisualizer(&m_fonts, &m_is_running, &m_current_tab);
 
-	while (this->is_running) {
+	while (m_is_running) {
 		if (m_current_tab == "Menu") m_menu->main();
-
+		else if (m_current_tab == "FightVisualizer") m_fight_visualizer->main();
 	}
 
 }

@@ -56,6 +56,10 @@ void GenericEntity::check_click(const sf::Vector2i& mouse_pos) {
 		m_is_selected = !m_is_selected;
 		return;
 	}
+	if (m_is_selected) {
+		std::cout << mouse_pos.x << " " << mouse_pos.y << std::endl;
+		this->set_position(sf::Vector2f(mouse_pos.x - m_size.x/2.f, mouse_pos.y-m_size.y/2.f));
+	}
 	std::cout << "[Debug] Entity not clicked." << std::endl;
 	m_is_selected = false;
 }

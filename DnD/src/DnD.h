@@ -9,6 +9,7 @@
 
 #include "../sdk/Widgets/include.h"
 
+#include "FightVisualizer/FightVisualizer.h"
 #include "Menu/Menu.h"
 
 using namespace sf;
@@ -16,6 +17,8 @@ using namespace sf;
 class DnD
 {
 private:
+	bool m_is_running = true;
+	
 	RenderWindow* m_window;
 	int m_width, m_height;
 	
@@ -32,18 +35,25 @@ private:
 	std::string m_current_tab = "Menu";
 
 	Menu* m_menu = nullptr;
+	FightVisualizer* m_fight_visualizer = nullptr;
 
 	void m_load_fonts();
 
 public:
 	
-	bool is_running = true;
+
 
 	DnD(int width, int height, const char* title);
 	DnD(int width, int height, int fps, const char* title);
 	~DnD();
 
-	//void events_handler();
+	std::string get_current_tab() { return m_current_tab; }
+	void set_current_tab(std::string& tab) { m_current_tab = tab; }
+
+	RenderWindow* get_render_window() { return m_window; }
+	std::map<std::string, Font*>* get_fonts() { return &m_fonts; }
+
+	void exit() { m_is_running = false; }
 	void main();
 };
 

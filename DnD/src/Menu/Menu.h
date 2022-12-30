@@ -9,6 +9,7 @@
 #endif
 
 #include "../../sdk/Widgets/include.h"
+
 #include "../FightVisualizer/entities/Entity/Entity.h"
 
 class Menu
@@ -20,20 +21,24 @@ private:
 	sf::Texture* m_background_texture;
 	std::string* m_current_tab;
 
-	std::vector<GenericEntity*> m_entities;
-
 	std::vector<Button*> m_buttons;
+
+	Entity* ent;
+
+	bool m_first_load = true;
 
 	void m_load_widgets();
 	void m_load_background();
 	void m_events_handler();
 
+	void m_callback() { std::cout << "Callback\n"; }
 public:
 	bool* is_running;
 
 	Menu(sf::RenderWindow* window, sf::Font* breathefire_font, bool* is_running, std::string* current_tab);
 	~Menu();
 
+	void call_on_load();
 	void main();
 };
 
