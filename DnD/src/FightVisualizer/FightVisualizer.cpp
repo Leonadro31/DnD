@@ -31,17 +31,22 @@ void FightVisualizer::m_load_tiles() {
 	}
 }
 
-void FightVisualizer::m_load_background() {
+void FightVisualizer::m_load_textures() {
 	if (!m_background_texture.loadFromFile("C:\\Users\\Leonardo\\source\\repos\\DnD\\DnD\\assets\\fight_visualizer_bg.png")) std::cout << "[-] Couldn't load FightVisualizer background texture." << std::endl;
 	m_background.setTexture(m_background_texture);
+
+	/*if (!m_grid_texture.loadFromFile("C:\\Users\\Leonardo\\source\\repos\\DnD\\DnD\\assets\\visualizer_grid.png")) std::cout << "[-] Couldn't load FightVisualizer grid texture." << std::endl;
+	m_grid.setTexture(m_grid_texture);
+	m_grid.setPosition(sf::Vector2f(297.f, 19.f));*/
 }
 
 void FightVisualizer::call_on_load() {
 	m_window = new sf::RenderWindow(sf::VideoMode(1280, 800), "DnD - Fight Visualizer", sf::Style::Titlebar | sf::Style::Close);
 	m_load_widgets();
-	m_load_background();
+	m_load_textures();
 	m_load_tiles();
 	m_entities.push_back(new Entity("C:\\Users\\Leonardo\\source\\repos\\DnD\\DnD\\assets\\werewolf.png", sf::Vector2f(695.f,380.f), sf::Vector2f(100, 100), 100));
+	m_entities.push_back(new Entity("C:\\Users\\Leonardo\\source\\repos\\DnD\\DnD\\assets\\entity_test.png", sf::Vector2f(600.f, 380.f), sf::Vector2f(100, 100), 100));
 }
 
 void FightVisualizer::m_events_handler() {
@@ -86,6 +91,8 @@ void FightVisualizer::main() {
 
 	m_window->draw(m_background);
 	for (auto& tile_row : m_tiles) for (auto& tile : tile_row) tile->draw(m_window);
+//	m_window->draw(m_grid);
+
 	for (const auto& entity : m_entities) entity->draw(m_window);
 	
 	m_window->display();
