@@ -13,7 +13,7 @@ int main()
 #else
     ShowWindow(GetConsoleWindow(), SW_SHOW);
 #endif
-    
+    std::cout << "Test\n";
     DnD dnd(500, 500, "Dungeons & Dragons Character Sheet Builder");
     dnd.main();
 
