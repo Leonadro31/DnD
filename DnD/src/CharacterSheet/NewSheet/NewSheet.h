@@ -35,6 +35,13 @@ struct Stats {
 	bool m_ability_check_sopravvivenza = false;
 	bool m_ability_check_storia = false;
 
+	bool m_sav_throw_str = false;
+	bool m_sav_throw_dex = false;
+	bool m_sav_throw_con = false;
+	bool m_sav_throw_int = false;
+	bool m_sav_throw_wis = false;
+	bool m_sav_throw_cha = false;
+
 
 
 	int Str;

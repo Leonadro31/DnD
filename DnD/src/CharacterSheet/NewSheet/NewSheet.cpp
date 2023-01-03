@@ -32,8 +32,31 @@ void NewSheet::m_load_widgets() {
 	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(303.f, 265.f), sf::Vector2f(34.0, 34.f), "")); //Ispirazione
 	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(846.f, 285.f), sf::Vector2f(45.0, 45.f), "")); //Ispirazione
 
-	m_round_check_box.push_back(new RoundCheckBox(sf::Vector2f(567.f,274.f),4,m_stats.m_ability_check_acrobazia)); //acrobazia
-	m_round_check_box.push_back(new RoundCheckBox(sf::Vector2f(567.f, 301.f),4, m_stats.m_ability_check_animali)); //addestrare animali
+	m_round_check_box.push_back(new RoundCheckBox(sf::Vector2f(562.f,269.f),6, &m_stats.m_ability_check_acrobazia)); //acrobazia
+	m_round_check_box.push_back(new RoundCheckBox(sf::Vector2f(562.f, 297.f),6, &m_stats.m_ability_check_animali)); //addestrare animali
+	m_round_check_box.push_back(new RoundCheckBox(sf::Vector2f(562.f, 325.f), 6, &m_stats.m_ability_check_arcana));
+	m_round_check_box.push_back(new RoundCheckBox(sf::Vector2f(562.f, 353.f), 6, &m_stats.m_ability_check_atletica));
+	m_round_check_box.push_back(new RoundCheckBox(sf::Vector2f(562.f, 381.f), 6, &m_stats.m_ability_check_furtività));
+	m_round_check_box.push_back(new RoundCheckBox(sf::Vector2f(562.f, 409.f), 6, &m_stats.m_ability_check_indagare));
+	m_round_check_box.push_back(new RoundCheckBox(sf::Vector2f(562.f, 438.f), 6, &m_stats.m_ability_check_inganno));
+	m_round_check_box.push_back(new RoundCheckBox(sf::Vector2f(562.f, 466.f), 6, &m_stats.m_ability_check_intimidire));
+	m_round_check_box.push_back(new RoundCheckBox(sf::Vector2f(562.f, 494.f), 6, &m_stats.m_ability_check_intrattenere));
+	m_round_check_box.push_back(new RoundCheckBox(sf::Vector2f(562.f, 522.f), 6, &m_stats.m_ability_check_intuizione));
+	m_round_check_box.push_back(new RoundCheckBox(sf::Vector2f(562.f, 550.f), 6, &m_stats.m_ability_check_medicina));
+	m_round_check_box.push_back(new RoundCheckBox(sf::Vector2f(562.f, 578.f), 6, &m_stats.m_ability_check_natura));
+	m_round_check_box.push_back(new RoundCheckBox(sf::Vector2f(562.f, 606.f), 6, &m_stats.m_ability_check_percezione));
+	m_round_check_box.push_back(new RoundCheckBox(sf::Vector2f(562.f, 634.f), 6, &m_stats.m_ability_check_persuasione));
+	m_round_check_box.push_back(new RoundCheckBox(sf::Vector2f(562.f, 662.f), 6, &m_stats.m_ability_check_rapidità));
+	m_round_check_box.push_back(new RoundCheckBox(sf::Vector2f(562.f, 690.f), 6, &m_stats.m_ability_check_religione));
+	m_round_check_box.push_back(new RoundCheckBox(sf::Vector2f(562.f, 718.f), 6, &m_stats.m_ability_check_sopravvivenza));
+	m_round_check_box.push_back(new RoundCheckBox(sf::Vector2f(562.f, 746.f), 6, &m_stats.m_ability_check_storia));
+
+	m_round_check_box.push_back(new RoundCheckBox(sf::Vector2f(308.f, 431.f), 6, &m_stats.m_sav_throw_str));
+	m_round_check_box.push_back(new RoundCheckBox(sf::Vector2f(308.f, 459.f), 6, &m_stats.m_sav_throw_dex));
+	m_round_check_box.push_back(new RoundCheckBox(sf::Vector2f(308.f, 487.f), 6, &m_stats.m_sav_throw_con));
+	m_round_check_box.push_back(new RoundCheckBox(sf::Vector2f(308.f, 515.f), 6, &m_stats.m_sav_throw_int));
+	m_round_check_box.push_back(new RoundCheckBox(sf::Vector2f(308.f, 543.f), 6, &m_stats.m_sav_throw_wis));
+	m_round_check_box.push_back(new RoundCheckBox(sf::Vector2f(308.f, 571.f), 6, &m_stats.m_sav_throw_cha));
 
 	for (const auto& button : m_buttons) {
 		button->set_font_size(20);
