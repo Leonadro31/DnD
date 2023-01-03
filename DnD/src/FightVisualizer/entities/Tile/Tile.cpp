@@ -31,7 +31,7 @@ void Tile::check_click(const sf::Vector2i& mouse_pos) {
 }
 
 std::string Tile::m_get_path_from_type(int type) {
-	std::string base = "C:\\Users\\Leonardo\\source\\repos\\DnD\\DnD\\assets\\tiles\\";
+	std::string base = "C:\\Users\\39348\\source\\repos\\DnD\\DnD\\assets\\tiles\\";
 	switch (type)
 	{
 	case 1:

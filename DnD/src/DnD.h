@@ -11,6 +11,9 @@
 
 #include "FightVisualizer/FightVisualizer.h"
 #include "Menu/Menu.h"
+#include "CharacterSheet/CharacterSheet.h"
+#include "CharacterSheet/NewSheet/NewSheet.h"
+#include "CharacterSheet/LoadSheet/LoadSheet.h"
 
 using namespace sf;
 
@@ -36,6 +39,10 @@ private:
 
 	Menu* m_menu = nullptr;
 	FightVisualizer* m_fight_visualizer = nullptr;
+	CharacterSheet* m_character_sheet = nullptr;
+	NewSheet* m_new_sheet = nullptr;
+	LoadSheet* m_load_sheet = nullptr;
+	
 
 	void m_load_fonts();
 

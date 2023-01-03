@@ -110,10 +110,10 @@ void DnD::m_load_fonts() {
 	Font* arial = new Font();
 	Font* breathefire = new Font();
 
-	if (arial->loadFromFile("C:\\Users\\Leonardo\\source\\repos\\DnD\\DnD\\assets\\arial.ttf")) std::cout << "[+] Loaded Arial font." << std::endl;
+	if (arial->loadFromFile("C:\\Users\\39348\\source\\repos\\DnD\\DnD\\assets\\arial.ttf")) std::cout << "[+] Loaded Arial font." << std::endl;
 	else std::cout << "[-] Couldn't load Arial font." << std::endl;
 
-	if (breathefire->loadFromFile("C:\\Users\\Leonardo\\source\\repos\\DnD\\DnD\\assets\\BreatheFire.ttf")) std::cout << "[+] Loaded BreatheFire font." << std::endl;
+	if (breathefire->loadFromFile("C:\\Users\\39348\\source\\repos\\DnD\\DnD\\assets\\BreatheFire.ttf")) std::cout << "[+] Loaded BreatheFire font." << std::endl;
 	else std::cout << "[-] Couldn't load BreatheFire font." << std::endl;
 
 	m_fonts.insert({ "Arial", arial });
@@ -128,10 +128,16 @@ void DnD::main() {
 
 	m_menu = new Menu(m_window, m_fonts["BreatheFire"], &m_is_running, &m_current_tab);
 	m_fight_visualizer = new FightVisualizer(&m_fonts, &m_is_running, &m_current_tab);
+	m_character_sheet = new CharacterSheet(&m_fonts, &m_is_running, &m_current_tab);
+	m_new_sheet = new NewSheet(&m_fonts, &m_is_running, &m_current_tab);
+	m_load_sheet = new LoadSheet(&m_fonts, &m_is_running, &m_current_tab);
 
 	while (m_is_running) {
 		if (m_current_tab == "Menu") m_menu->main();
 		else if (m_current_tab == "FightVisualizer") m_fight_visualizer->main();
+		else if (m_current_tab == "CharacterSheet") m_character_sheet->main();
+		else if (m_current_tab == "NewSheet") m_new_sheet->main();
+		else if (m_current_tab == "LoadSheet") m_load_sheet->main();
 	}
 
 }

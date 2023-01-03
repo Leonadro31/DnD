@@ -31,7 +31,7 @@ private:
 	void m_load_background();
 	void m_events_handler();
 
-	void m_callback() { std::cout << "Callback\n"; }
+	
 public:
 	bool* is_running;
 
