@@ -23,7 +23,7 @@ void Menu::m_load_widgets() {
 	if (m_breathefire_font == nullptr) std::cout << "[-] BreatheFire font is nullptr" << std::endl;
 
 	m_buttons.push_back(new Button("C:\\Users\\39348\\source\\repos\\DnD\\DnD\\assets\\button.png", *m_breathefire_font, sf::Vector2f(138.f, 70.f), sf::Vector2f(210.0, 40.f), "Schede Personaggio", 0));
-	m_buttons.push_back(new Button("C:\\Users\\39348\\source\\repos\\DnD\\DnD\\assets\\button.png", *m_breathefire_font, sf::Vector2f(138.f, 130.f), sf::Vector2f(210.0, 40.f), "Visualizzatore Combattimenti", 0));
+	m_buttons.push_back(new Button("C:\\Users\\39348\\source\\repos\\DnD\\DnD\\assets\\button.png", *m_breathefire_font, sf::Vector2f(138.f, 130.f), sf::Vector2f(210.0, 40.f), "Visualizzatore Fights", 0));
 
 
 	for (const auto& button : m_buttons) {
