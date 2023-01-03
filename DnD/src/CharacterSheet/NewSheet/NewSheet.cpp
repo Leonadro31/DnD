@@ -15,13 +15,14 @@ NewSheet::~NewSheet() {
 void NewSheet::m_load_widgets() {
 
 	m_buttons.push_back(new Button("C:\\Users\\39348\\source\\repos\\DnD\\DnD\\assets\\button.png", *m_fonts->at("BreatheFire"), sf::Vector2f(0.f, 0.f), sf::Vector2f(40.0, 40.f), "<-", 0));
-	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(69.f, 114.f), sf::Vector2f(240.0, 40.f), ""));
-	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(518.f, 90.f), sf::Vector2f(210.0, 20.f), ""));
-	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(754.f, 90.f), sf::Vector2f(170.0, 20.f), ""));
-	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(952.f, 90.f), sf::Vector2f(170.0, 20.f), ""));
-	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(518.f, 145.f), sf::Vector2f(210.0, 20.f), ""));
-	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(754.f, 145.f), sf::Vector2f(170.0, 20.f), ""));
-	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(952.f, 145.f), sf::Vector2f(170.0, 20.f), ""));
+	
+	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(69.f, 114.f), sf::Vector2f(240.0, 40.f), "")); //nome pg
+	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(518.f, 90.f), sf::Vector2f(210.0, 20.f), "")); // classe e lvl
+	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(754.f, 90.f), sf::Vector2f(170.0, 20.f), "")); // background
+	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(952.f, 90.f), sf::Vector2f(170.0, 20.f), "")); //nome player
+	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(518.f, 145.f), sf::Vector2f(210.0, 20.f), "")); //razza
+	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(754.f, 145.f), sf::Vector2f(170.0, 20.f), "")); // allineamento
+	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(952.f, 145.f), sf::Vector2f(170.0, 20.f), "")); //exp
 	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(44.f, 301.f), sf::Vector2f(55.0, 55.f), "")); //Forza
 	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(180.f, 300.f), sf::Vector2f(55.0, 55.f), "")); //Intelligenza
 	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(44.f, 450.f), sf::Vector2f(55.0, 55.f), "")); //dex
@@ -30,6 +31,9 @@ void NewSheet::m_load_widgets() {
 	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(180.f, 598.f), sf::Vector2f(55.0, 55.f), "")); //cha
 	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(303.f, 265.f), sf::Vector2f(34.0, 34.f), "")); //Ispirazione
 	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(846.f, 285.f), sf::Vector2f(45.0, 45.f), "")); //Ispirazione
+
+	m_round_check_box.push_back(new RoundCheckBox(sf::Vector2f(567.f,274.f),4,m_stats.m_ability_check_acrobazia)); //acrobazia
+	m_round_check_box.push_back(new RoundCheckBox(sf::Vector2f(567.f, 301.f),4, m_stats.m_ability_check_animali)); //addestrare animali
 
 	for (const auto& button : m_buttons) {
 		button->set_font_size(20);
@@ -74,6 +78,7 @@ void NewSheet::m_event_handler() {
 			}
 
 			for (const auto& textinput : m_text_input) textinput->check_click(mouse_pos);
+			for (const auto& round_check : m_round_check_box) round_check->check_click(mouse_pos);
 		}
 
 		if (event.type == sf::Event::KeyPressed) {
@@ -137,6 +142,7 @@ void NewSheet::main() {
 	
 	for (const auto& button : m_buttons) button->draw(m_window);
 	for (const auto& text : m_text_input) text->draw(m_window);
+	for (const auto& round_check : m_round_check_box) round_check->draw(m_window);
 
 
 	m_window->display();
