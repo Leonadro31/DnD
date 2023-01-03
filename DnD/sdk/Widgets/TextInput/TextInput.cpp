@@ -86,8 +86,8 @@ void TextInput::draw(sf::RenderWindow* win) {
 
 	if (is_selected) {
 		line_animation_count++;
-		if (line_animation_count < 30) m_line->setFillColor(sf::Color::Black);
-		else if (line_animation_count < 60) m_line->setFillColor(m_background_border_color);
+		if (line_animation_count < 180) m_line->setFillColor(sf::Color::Black);
+		else if (line_animation_count < 360) m_line->setFillColor(m_background_border_color);
 		else line_animation_count = 0;
 		win->draw(*m_line);
 	}

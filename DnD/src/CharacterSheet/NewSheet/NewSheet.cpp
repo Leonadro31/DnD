@@ -15,16 +15,35 @@ NewSheet::~NewSheet() {
 void NewSheet::m_load_widgets() {
 
 	m_buttons.push_back(new Button("C:\\Users\\39348\\source\\repos\\DnD\\DnD\\assets\\button.png", *m_fonts->at("BreatheFire"), sf::Vector2f(0.f, 0.f), sf::Vector2f(40.0, 40.f), "<-", 0));
-
+	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(69.f, 114.f), sf::Vector2f(240.0, 40.f), ""));
+	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(518.f, 90.f), sf::Vector2f(210.0, 20.f), ""));
+	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(754.f, 90.f), sf::Vector2f(170.0, 20.f), ""));
+	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(952.f, 90.f), sf::Vector2f(170.0, 20.f), ""));
+	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(518.f, 145.f), sf::Vector2f(210.0, 20.f), ""));
+	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(754.f, 145.f), sf::Vector2f(170.0, 20.f), ""));
+	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(952.f, 145.f), sf::Vector2f(170.0, 20.f), ""));
+	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(44.f, 301.f), sf::Vector2f(55.0, 55.f), "")); //Forza
+	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(180.f, 300.f), sf::Vector2f(55.0, 55.f), "")); //Intelligenza
+	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(44.f, 450.f), sf::Vector2f(55.0, 55.f), "")); //dex
+	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(180.f, 449.f), sf::Vector2f(55.0, 55.f), "")); //wis
+	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(44.f, 598.f), sf::Vector2f(55.0, 55.f), "")); //con
+	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(180.f, 598.f), sf::Vector2f(55.0, 55.f), "")); //cha
+	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(303.f, 265.f), sf::Vector2f(34.0, 34.f), "")); //Ispirazione
+	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(846.f, 285.f), sf::Vector2f(45.0, 45.f), "")); //Ispirazione
 
 	for (const auto& button : m_buttons) {
 		button->set_font_size(20);
 	}
+
+	for (const auto& textinput : m_text_input) {
+		textinput->set_background_fill_color(sf::Color(0, 0, 0, 0));
+		textinput->set_background_border_color(sf::Color(0, 0, 0, 0));
+	}
 }
 
 void NewSheet::call_on_load() {
-	m_window = new sf::RenderWindow(sf::VideoMode(960, 540), "DnD - Nuova Sheda", sf::Style::Titlebar | sf::Style::Close);
-	m_background_texture.loadFromFile("C:\\Users\\39348\\source\\repos\\DnD\\DnD\\assets\\NewSheetBg.jpg");
+	m_window = new sf::RenderWindow(sf::VideoMode(1200, 840), "DnD - Nuova Sheda", sf::Style::Titlebar | sf::Style::Close);
+	m_background_texture.loadFromFile("C:\\Users\\39348\\source\\repos\\DnD\\DnD\\assets\\CharacterSheet.png");
 	m_background.setTexture(m_background_texture);
 
 	m_load_widgets();
@@ -53,6 +72,53 @@ void NewSheet::m_event_handler() {
 				m_first_load = true;
 				m_window->close();
 			}
+
+			for (const auto& textinput : m_text_input) textinput->check_click(mouse_pos);
+		}
+
+		if (event.type == sf::Event::KeyPressed) {
+
+		}
+
+		if (event.type == sf::Event::KeyReleased) {
+			//	std::cout << "[Debug] Key: " << event.text.unicode << std::endl;
+
+			if (event.text.unicode == 4294967295) {
+				//caps lock
+			}
+
+			if (event.text.unicode <= 25) {
+				char pressed_letter = static_cast<char>(event.text.unicode + 0x41);;
+
+				if (is_caps && sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) pressed_letter = tolower(pressed_letter);
+				if (!is_caps && !sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) pressed_letter = tolower(pressed_letter);
+
+				for (TextInput* input_box : m_text_input) {
+					input_box->get_input(pressed_letter);
+				}
+			}
+			else if (event.text.unicode == 57) {
+				for (TextInput* input_box : m_text_input) {
+					input_box->get_input(' ');
+				}
+			}
+			else if (26 <= event.text.unicode && event.text.unicode <= 35) {
+				int pressed_number = event.text.unicode - 26;
+				for (TextInput* input_box : m_text_input) {
+					input_box->get_input(pressed_number);
+				}
+			}
+			else if (event.text.unicode == 59) {
+				for (TextInput* input_box : m_text_input) {
+					input_box->get_input(true);
+				}
+			}
+			else {
+				std::cout << "[Debug] Key: " << event.text.unicode << std::endl;
+			}
+
+
+
 		}
 	}
 }
@@ -70,6 +136,7 @@ void NewSheet::main() {
 	m_window->draw(m_background);
 	
 	for (const auto& button : m_buttons) button->draw(m_window);
+	for (const auto& text : m_text_input) text->draw(m_window);
 
 
 	m_window->display();
