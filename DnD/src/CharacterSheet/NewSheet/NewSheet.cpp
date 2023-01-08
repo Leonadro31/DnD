@@ -14,7 +14,7 @@ NewSheet::~NewSheet() {
 
 void NewSheet::m_load_widgets() {
 
-	m_buttons.push_back(new Button("C:\\Users\\39348\\source\\repos\\DnD\\DnD\\assets\\button.png", *m_fonts->at("BreatheFire"), sf::Vector2f(0.f, 0.f), sf::Vector2f(40.0, 40.f), "<-", 0));
+	m_buttons.push_back(new Button(globals::get_assets_path("button.png"), *m_fonts->at("BreatheFire"), sf::Vector2f(0.f, 0.f), sf::Vector2f(40.0, 40.f), "<-", 0));
 	
 	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(69.f, 114.f), sf::Vector2f(240.0, 40.f), "")); //nome pg
 	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(518.f, 90.f), sf::Vector2f(210.0, 20.f), "")); // classe e lvl
@@ -70,7 +70,7 @@ void NewSheet::m_load_widgets() {
 
 void NewSheet::call_on_load() {
 	m_window = new sf::RenderWindow(sf::VideoMode(1200, 840), "DnD - Nuova Sheda", sf::Style::Titlebar | sf::Style::Close);
-	m_background_texture.loadFromFile("C:\\Users\\39348\\source\\repos\\DnD\\DnD\\assets\\CharacterSheet.png");
+	m_background_texture.loadFromFile(globals::get_assets_path("CharacterSheet.png"));
 	m_background.setTexture(m_background_texture);
 
 	m_load_widgets();

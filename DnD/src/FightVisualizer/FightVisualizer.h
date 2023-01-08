@@ -14,6 +14,9 @@
 #include "entities/Tile/Tile.h"
 #include "entities/WorldEntity/WorldEntity.h"
 
+#include "WorldEditor/WorldEditor.h"
+
+#include "../Globals.h"
 
 class FightVisualizer
 {
@@ -24,8 +27,8 @@ private:
 	sf::Sprite m_background;
 	sf::Texture m_background_texture;
 
-	sf::Sprite m_grid;
-	sf::Texture m_grid_texture;
+	WorldEditor* m_world_editor;
+
 
 	std::map<std::string, sf::Font*>* m_fonts = nullptr;
 

@@ -42,7 +42,7 @@ public:
 	void set_background_border_color(const sf::Color& color);
 	void set_background_border_thickness(float thickness);
 
-	sf::Text* get_text_object() { return m_text; }
-	sf::RectangleShape* get_background_object() { return m_background; }
+	inline sf::Text* get_text_object() { return m_text; }
+	inline sf::RectangleShape* get_background_object() { return m_background; }
 };
 

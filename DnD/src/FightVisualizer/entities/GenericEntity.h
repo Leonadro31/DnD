@@ -8,6 +8,8 @@
 #include <Windows.h>
 #endif
 
+#include "../../Globals.h"
+
 
 class GenericEntity
 {
@@ -32,7 +34,7 @@ public:
 	virtual void set_size(const sf::Vector2f& size);
 	virtual void set_texture(const std::string& texture_path);
 	virtual void draw(sf::RenderWindow* window);
-	virtual bool is_selected() { return m_is_selected; }
+	inline virtual bool is_selected() { return m_is_selected; }
 	virtual void check_click(const sf::Vector2i& mouse_pos);
 
 };

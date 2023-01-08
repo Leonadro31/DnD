@@ -15,6 +15,8 @@
 #include "CharacterSheet/NewSheet/NewSheet.h"
 #include "CharacterSheet/LoadSheet/LoadSheet.h"
 
+#include "Globals.h"
+
 using namespace sf;
 
 class DnD

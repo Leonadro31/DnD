@@ -110,10 +110,10 @@ void DnD::m_load_fonts() {
 	Font* arial = new Font();
 	Font* breathefire = new Font();
 
-	if (arial->loadFromFile("C:\\Users\\39348\\source\\repos\\DnD\\DnD\\assets\\arial.ttf")) std::cout << "[+] Loaded Arial font." << std::endl;
+	if (arial->loadFromFile(globals::get_assets_path("arial.ttf"))) std::cout << "[+] Loaded Arial font." << std::endl;
 	else std::cout << "[-] Couldn't load Arial font." << std::endl;
 
-	if (breathefire->loadFromFile("C:\\Users\\39348\\source\\repos\\DnD\\DnD\\assets\\BreatheFire.ttf")) std::cout << "[+] Loaded BreatheFire font." << std::endl;
+	if (breathefire->loadFromFile(globals::get_assets_path("BreatheFire.ttf"))) std::cout << "[+] Loaded BreatheFire font." << std::endl;
 	else std::cout << "[-] Couldn't load BreatheFire font." << std::endl;
 
 	m_fonts.insert({ "Arial", arial });

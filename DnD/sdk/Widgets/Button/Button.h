@@ -48,6 +48,6 @@ public:
 	void set_font_size(int size);
 	bool check_click(const sf::Vector2i& mouse_pos);
 	void draw(sf::RenderWindow* window);
-	sf::RectangleShape* get_rectangle_object() { return &m_rectangle; }
-	sf::Sprite* get_sprite_object() { return &m_sprite; }
+	inline sf::RectangleShape* get_rectangle_object() { return &m_rectangle; }
+	inline sf::Sprite* get_sprite_object() { return &m_sprite; }
 };

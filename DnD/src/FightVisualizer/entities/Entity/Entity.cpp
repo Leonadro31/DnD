@@ -3,17 +3,23 @@
 
 Entity::Entity(const std::string& texture_path, const sf::Vector2f& position, const sf::Vector2f& size, int health_points) : GenericEntity(texture_path, position, size) {
 	m_health = health_points;
+#ifdef DEBUG_ENTITIES
 	std::cout << "[Debug] Entity created." << std::endl;
+#endif
 }
 
 Entity::~Entity() {
+#ifdef DEBUG_ENTITIES
 	std::cout << "[Debug] Entity destructed." << std::endl;
+#endif
 }
 
 
 void Entity::check_click(const sf::Vector2i& mouse_pos) {
 	if ((mouse_pos.x >= m_position.x && mouse_pos.x <= m_position.x + m_size.x) && (mouse_pos.y >= m_position.y && mouse_pos.y <= m_position.y + m_size.y)) {
+#ifdef DEBUG_ENTITIES
 		std::cout << "[Debug] Entity clicked." << std::endl;
+#endif
 		m_is_selected = !m_is_selected;
 		return;
 	}

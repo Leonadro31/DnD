@@ -14,9 +14,10 @@ CharacterSheet::~CharacterSheet() {
 }
 
 void CharacterSheet::m_load_widgets() {
-
-	m_buttons.push_back(new Button("C:\\Users\\39348\\source\\repos\\DnD\\DnD\\assets\\button.png", *m_fonts->at("BreatheFire"), sf::Vector2f(375.f, 100.f), sf::Vector2f(210.0, 40.f), "Nuova Scheda", 0));
-	m_buttons.push_back(new Button("C:\\Users\\39348\\source\\repos\\DnD\\DnD\\assets\\button.png", *m_fonts->at("BreatheFire"), sf::Vector2f(375.f, 160.f), sf::Vector2f(210.0, 40.f), "Carica Scheda", 0));
+	
+	
+	m_buttons.push_back(new Button(globals::get_assets_path("button.png"), *m_fonts->at("BreatheFire"), sf::Vector2f(375.f, 100.f), sf::Vector2f(210.0, 40.f), "Nuova Scheda", 0));
+	m_buttons.push_back(new Button(globals::get_assets_path("button.png"), *m_fonts->at("BreatheFire"), sf::Vector2f(375.f, 160.f), sf::Vector2f(210.0, 40.f), "Carica Scheda", 0));
 	
 
 
@@ -64,7 +65,7 @@ void CharacterSheet::m_events_handler() {
 
 void CharacterSheet::call_on_load() {
 	m_window = new sf::RenderWindow(sf::VideoMode(960, 540), "DnD - Scheda Personaggio", sf::Style::Titlebar | sf::Style::Close);
-	m_background_texture.loadFromFile("C:\\Users\\39348\\source\\repos\\DnD\\DnD\\assets\\CharacterSheetMenuBg.jpg");
+	m_background_texture.loadFromFile(globals::get_assets_path("CharacterSheetMenuBg.jpg"));
 	m_background.setTexture(m_background_texture);
 
 	m_load_widgets();

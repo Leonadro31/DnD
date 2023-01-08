@@ -116,5 +116,8 @@
     <ClInclude Include="src\CharacterSheet\LoadSheet\LoadSheet.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
+    <ClInclude Include="src\Globals.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
