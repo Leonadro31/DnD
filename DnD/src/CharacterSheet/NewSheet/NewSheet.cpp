@@ -1,5 +1,186 @@
 #include "NewSheet.h"
 
+TextBox::TextBox(sf::Font& font, const sf::Vector2f& position, const sf::Vector2f& size, const std::string& placeholder) {
+	m_text = new sf::Text();
+	m_background = new sf::RectangleShape();
+	m_line = new sf::RectangleShape();
+
+	m_text->setFont(font);
+	m_text->setFillColor(sf::Color::Black);
+	m_text->setString(placeholder);
+
+	m_background->setPosition(position);
+	m_background->setSize(size);
+	m_background->setFillColor(sf::Color(71, 121, 143, 255));
+	m_background->setOutlineColor(sf::Color(68, 104, 120, 255));
+	m_background->setOutlineThickness(3);
+
+	m_line->setPosition(sf::Vector2f(position.x, position.y + size.y));
+	m_line->setSize(sf::Vector2f(size.x, m_background_border_thickness));
+	m_line->setFillColor(sf::Color::Black);
+
+	m_position = position;
+	m_size = size;
+	m_placeholder = placeholder;
+	m_background_border_color = sf::Color(68, 104, 120, 255);
+	m_background_fill_color = sf::Color(71, 121, 143, 255);
+	m_background_border_thickness = 3.f;
+
+	m_center_text_in_rect();
+
+	std::cout << "[Debug] Created TextInput" << std::endl;
+}
+
+TextBox::TextBox(sf::Font& font, const sf::Color& color, const sf::Vector2f& position, const sf::Vector2f& size, const std::string& placeholder) {
+	m_text = new sf::Text();
+	m_background = new sf::RectangleShape();
+	m_line = new sf::RectangleShape();
+
+	m_text->setFont(font);
+	m_text->setFillColor(color);
+	m_text->setString(placeholder);
+
+	m_background->setPosition(position);
+	m_background->setSize(size);
+	m_background->setFillColor(sf::Color::White);
+	m_background->setOutlineColor(sf::Color::Black);
+	m_background->setOutlineThickness(5);
+
+	m_line->setPosition(sf::Vector2f(position.x, position.y + size.y));
+	m_line->setSize(sf::Vector2f(size.x, m_background_border_thickness));
+	m_line->setFillColor(sf::Color::Black);
+
+	m_position = position;
+	m_size = size;
+	m_placeholder = placeholder;
+	m_background_border_color = sf::Color(68, 104, 120, 255);
+	m_background_fill_color = sf::Color(71, 121, 143, 255);
+	m_background_border_thickness = 3.f;
+
+	m_center_text_in_rect();
+
+	std::cout << "[Debug] Created TextInput" << std::endl;
+
+}
+
+TextBox::~TextBox() {
+	std::cout << "[Debug] Deleting TextInput" << std::endl;
+	delete m_text;
+	delete m_background;
+	delete m_line;
+}
+
+
+void TextBox::m_center_text_in_rect() {
+	sf::FloatRect text_rect = m_text->getLocalBounds();
+	m_text->setOrigin(text_rect.left + text_rect.width / 2.0f, text_rect.top + text_rect.height / 2.0f);
+	m_text->setPosition(sf::Vector2f(m_position.x + m_size.x / 2, m_position.y + m_size.y / 2));
+}
+
+
+void TextBox::draw(sf::RenderWindow* win) {
+	win->draw(*m_background);
+	win->draw(*m_text);
+
+	if (is_selected) {
+		line_animation_count++;
+		if (line_animation_count < 180) m_line->setFillColor(sf::Color::Black);
+		else if (line_animation_count < 360) m_line->setFillColor(m_background_border_color);
+		else line_animation_count = 0;
+		win->draw(*m_line);
+	}
+
+}
+
+
+bool TextBox::check_click(const sf::Vector2i& mouse_pos) {
+	if ((mouse_pos.x >= m_position.x && mouse_pos.x <= m_position.x + m_size.x) && (mouse_pos.y >= m_position.y && mouse_pos.y <= m_position.y + m_size.y)) {
+		is_selected = true;
+		std::cout << "[Debug] TextInput Selected" << std::endl;
+		return true;
+	}
+	is_selected = false;
+	return false;
+}
+
+
+void TextBox::get_input(char character) {
+	if (!is_selected) return;
+
+	m_placeholder.push_back(character);
+	m_text->setString(m_placeholder);
+	if (m_text->getLocalBounds().width > m_size.x) {
+		m_placeholder.pop_back();
+		m_text->setString(m_placeholder);
+	}
+	else {
+		m_text->setString(m_placeholder);
+		m_center_text_in_rect();
+	}
+}
+
+void TextBox::get_input(int number) {
+	if (!is_selected) return;
+
+	m_placeholder += std::to_string(number);
+	m_text->setString(m_placeholder);
+	if (m_text->getLocalBounds().width > m_size.x) {
+		m_placeholder.pop_back();
+		m_text->setString(m_placeholder);
+	}
+	else {
+		m_text->setString(m_placeholder);
+		m_center_text_in_rect();
+	}
+}
+
+
+void TextBox::get_input(bool backspace) {
+	if (!is_selected) return;
+	if (m_placeholder.length() <= 0) return;
+
+	m_placeholder.pop_back();
+	m_text->setString(m_placeholder);
+	m_text->setString(m_placeholder);
+	m_center_text_in_rect();
+}
+
+
+void TextBox::set_position(const sf::Vector2f& position) {
+	m_position = position;
+	m_text->setPosition(m_position);
+}
+
+void TextBox::set_font_size(int size) {
+	m_text->setCharacterSize(size);
+	m_center_text_in_rect();
+}
+
+void TextBox::set_background_fill_color(const sf::Color& color) {
+	m_background_fill_color = color;
+	m_background->setFillColor(m_background_fill_color);
+}
+
+
+void TextBox::set_background_border_color(const sf::Color& color) {
+	m_background_border_color = color;
+	m_background->setOutlineColor(m_background_border_color);
+}
+
+
+void TextBox::set_background_border_thickness(float thickness) {
+	m_background_border_thickness = thickness;
+	m_background->setOutlineThickness(m_background_border_thickness);
+}
+
+
+
+
+
+
+
+
+
 NewSheet::NewSheet(std::map<std::string, sf::Font*>* fonts, bool* is_running, std::string* current_tab) {
 	m_fonts = fonts;
 	m_is_running = is_running;
@@ -14,9 +195,9 @@ NewSheet::~NewSheet() {
 
 void NewSheet::m_load_widgets() {
 
-	m_buttons.push_back(new Button("C:\\Users\\39348\\source\\repos\\DnD\\DnD\\assets\\button.png", *m_fonts->at("BreatheFire"), sf::Vector2f(0.f, 0.f), sf::Vector2f(40.0, 40.f), "<-", 0));
+	m_buttons.push_back(new Button(globals::get_assets_path("button.png"), *m_fonts->at("BreatheFire"), sf::Vector2f(0.f, 0.f), sf::Vector2f(40.0, 40.f), "<-", 0));
 	
-	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(69.f, 114.f), sf::Vector2f(240.0, 40.f), "")); //nome pg
+	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(69.f, 114.f), sf::Vector2f(240.0, 40.f),"")); //nome pg
 	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(518.f, 90.f), sf::Vector2f(210.0, 20.f), "")); // classe e lvl
 	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(754.f, 90.f), sf::Vector2f(170.0, 20.f), "")); // background
 	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(952.f, 90.f), sf::Vector2f(170.0, 20.f), "")); //nome player
@@ -68,12 +249,56 @@ void NewSheet::m_load_widgets() {
 	}
 }
 
+void NewSheet::m_load_text_box() {
+	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(301.f, 339.f), sf::Vector2f(43.0, 43.f), ""));// bonus
+
+	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(56.f, 369.f), sf::Vector2f(30.0, 23.f), ""));//For
+	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(193.f, 368.f), sf::Vector2f(30.0, 23.f), ""));//Int
+	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(56.f, 519.f), sf::Vector2f(30.0, 23.f), "")); //dex
+	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(193.f, 518.f), sf::Vector2f(30.0, 23.f), ""));//wis
+	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(56.f, 669.f), sf::Vector2f(30.0, 23.f), "")); //con
+	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(193.f, 668.f), sf::Vector2f(30.0, 23.f), "")); //cha
+
+	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(591.f, 264.f), sf::Vector2f(15.0, 15.f), "")); //acrobazia
+	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(591.f, 292.f), sf::Vector2f(15.0, 15.f), "")); //animali
+	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(591.f, 320.f), sf::Vector2f(15.0, 15.f), "")); //arcana
+	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(591.f, 348.f), sf::Vector2f(15.0, 15.f), "")); //atletica
+	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(591.f, 376.f), sf::Vector2f(15.0, 15.f), "")); //furtività
+	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(591.f, 404.f), sf::Vector2f(15.0, 15.f), "")); //indagare
+	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(591.f, 432.f), sf::Vector2f(15.0, 15.f), "")); //inganno
+	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(591.f, 460.f), sf::Vector2f(15.0, 15.f), "")); //intimidire
+	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(591.f, 488.f), sf::Vector2f(15.0, 15.f), "")); //intrattenere
+	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(591.f, 516.f), sf::Vector2f(15.0, 15.f), "")); //intuizione
+	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(591.f, 544.f), sf::Vector2f(15.0, 15.f), "")); //medicina
+	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(591.f, 572.f), sf::Vector2f(15.0, 15.f), "")); //natura
+	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(591.f, 600.f), sf::Vector2f(15.0, 15.f), "")); //percezione
+	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(591.f, 628.f), sf::Vector2f(15.0, 15.f), "")); //persuasione
+	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(591.f, 656.f), sf::Vector2f(15.0, 15.f), "")); //rapidità
+	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(591.f, 684.f), sf::Vector2f(15.0, 15.f), "")); //religione
+	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(591.f, 712.f), sf::Vector2f(15.0, 15.f), "")); //sopravvivenza
+	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(591.f, 740.f), sf::Vector2f(15.0, 15.f), "")); //storia
+
+	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(340.f, 428.f), sf::Vector2f(15.0, 15.f), ""));
+	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(340.f, 456.f), sf::Vector2f(15.0, 15.f), ""));
+	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(340.f, 484.f), sf::Vector2f(15.0, 15.f), ""));
+	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(340.f, 512.f), sf::Vector2f(15.0, 15.f), ""));
+	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(340.f, 540.f), sf::Vector2f(15.0, 15.f), ""));
+	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(340.f, 568.f), sf::Vector2f(15.0, 15.f), ""));
+
+	for (const auto& textoutput : m_text_output) {
+		textoutput->set_background_fill_color(sf::Color(0, 0, 0, 0));
+		textoutput->set_background_border_color(sf::Color(0, 0, 0, 0));
+		textoutput->set_font_size(15);
+	}
+}
+
 void NewSheet::call_on_load() {
 	m_window = new sf::RenderWindow(sf::VideoMode(1200, 840), "DnD - Nuova Sheda", sf::Style::Titlebar | sf::Style::Close);
-	m_background_texture.loadFromFile("C:\\Users\\39348\\source\\repos\\DnD\\DnD\\assets\\CharacterSheet.png");
+	m_background_texture.loadFromFile(globals::get_assets_path("CharacterSheet.png"));
 	m_background.setTexture(m_background_texture);
 
 	m_load_widgets();
+	m_load_text_box();
 }
 
 void NewSheet::m_event_handler() {
@@ -101,7 +326,154 @@ void NewSheet::m_event_handler() {
 			}
 
 			for (const auto& textinput : m_text_input) textinput->check_click(mouse_pos);
-			for (const auto& round_check : m_round_check_box) round_check->check_click(mouse_pos);
+
+			for (const auto& roundcheck : m_round_check_box) roundcheck->check_click(mouse_pos);
+			
+			if (m_stats.m_ability_check_acrobazia) {
+				int n = m_stats.DexMod + m_stats.m_bonus;
+				std::stringstream ss;
+				std::string N;
+				ss << n;
+				ss >> N;
+				m_text_output[7]->m_update_text(N);
+			}
+			if (m_stats.m_ability_check_animali) {
+				int n = m_stats.WisMod + m_stats.m_bonus;
+				std::stringstream ss;
+				std::string N;
+				ss << n;
+				ss >> N;
+				m_text_output[8]->m_update_text(N);
+			}
+			if (m_stats.m_ability_check_arcana) {
+				int n = m_stats.IntMod + m_stats.m_bonus;
+				std::stringstream ss;
+				std::string N;
+				ss << n;
+				ss >> N;
+				m_text_output[9]->m_update_text(N);
+			}
+			if (m_stats.m_ability_check_atletica) {
+				int n = m_stats.StrMod + m_stats.m_bonus;
+				std::stringstream ss;
+				std::string N;
+				ss << n;
+				ss >> N;
+				m_text_output[10]->m_update_text(N);
+			}
+			if (m_stats.m_ability_check_furtività) {
+				int n = m_stats.DexMod + m_stats.m_bonus;
+				std::stringstream ss;
+				std::string N;
+				ss << n;
+				ss >> N;
+				m_text_output[11]->m_update_text(N);
+			}
+			if (m_stats.m_ability_check_indagare) {
+				int n = m_stats.IntMod + m_stats.m_bonus;
+				std::stringstream ss;
+				std::string N;
+				ss << n;
+				ss >> N;
+				m_text_output[12]->m_update_text(N);
+			}
+			if (m_stats.m_ability_check_inganno) {
+				int n = m_stats.ChaMod + m_stats.m_bonus;
+				std::stringstream ss;
+				std::string N;
+				ss << n;
+				ss >> N;
+				m_text_output[13]->m_update_text(N);
+			}
+			if (m_stats.m_ability_check_intimidire) {
+				int n = m_stats.ChaMod + m_stats.m_bonus;
+				std::stringstream ss;
+				std::string N;
+				ss << n;
+				ss >> N;
+				m_text_output[14]->m_update_text(N);
+			}
+			if (m_stats.m_ability_check_intrattenere) {
+				int n = m_stats.ChaMod + m_stats.m_bonus;
+				std::stringstream ss;
+				std::string N;
+				ss << n;
+				ss >> N;
+				m_text_output[15]->m_update_text(N);
+			}
+			if (m_stats.m_ability_check_intuizione) {
+				int n = m_stats.WisMod+ m_stats.m_bonus;
+				std::stringstream ss;
+				std::string N;
+				ss << n;
+				ss >> N;
+				m_text_output[16]->m_update_text(N);
+			}
+			if (m_stats.m_ability_check_medicina) {
+				int n = m_stats.WisMod + m_stats.m_bonus;
+				std::stringstream ss;
+				std::string N;
+				ss << n;
+				ss >> N;
+				m_text_output[17]->m_update_text(N);
+			}
+			if (m_stats.m_ability_check_natura) {
+				int n = m_stats.IntMod + m_stats.m_bonus;
+				std::stringstream ss;
+				std::string N;
+				ss << n;
+				ss >> N;
+				m_text_output[18]->m_update_text(N);
+			}
+			if (m_stats.m_ability_check_percezione) {
+				int n = m_stats.WisMod + m_stats.m_bonus;
+				std::stringstream ss;
+				std::string N;
+				ss << n;
+				ss >> N;
+				m_text_output[19]->m_update_text(N);
+			}
+			if (m_stats.m_ability_check_persuasione) {
+				int n = m_stats.ChaMod + m_stats.m_bonus;
+				std::stringstream ss;
+				std::string N;
+				ss << n;
+				ss >> N;
+				m_text_output[20]->m_update_text(N);
+			}
+		    if (m_stats.m_ability_check_rapidità) {
+				int n = m_stats.DexMod + m_stats.m_bonus;
+				std::stringstream ss;
+				std::string N;
+				ss << n;
+				ss >> N;
+				m_text_output[21]->m_update_text(N);
+			}
+			if (m_stats.m_ability_check_religione) {
+				int n = m_stats.IntMod + m_stats.m_bonus;
+				std::stringstream ss;
+				std::string N;
+				ss << n;
+				ss >> N;
+				m_text_output[22]->m_update_text(N);
+			}
+			if (m_stats.m_ability_check_sopravvivenza) {
+				int n = m_stats.WisMod + m_stats.m_bonus;
+				std::stringstream ss;
+				std::string N;
+				ss << n;
+				ss >> N;
+				m_text_output[23]->m_update_text(N);
+			}
+			if (m_stats.m_ability_check_storia) {
+				int n = m_stats.IntMod + m_stats.m_bonus;
+				std::stringstream ss;
+				std::string N;
+				ss << n;
+				ss >> N;
+				m_text_output[24]->m_update_text(N);
+			}
+
 		}
 
 		if (event.type == sf::Event::KeyPressed) {
@@ -136,6 +508,129 @@ void NewSheet::m_event_handler() {
 					input_box->get_input(pressed_number);
 				}
 			}
+			else if (event.text.unicode == 58) {
+				for (TextInput* input_box : m_text_input) {
+					/*if (m_text_input[1]->is_selected) {
+						std::string X = m_text_input[0]->get_text();
+						X = m_stats.Classe + m_stats.Livello;
+						m_stats.m_lvl = stoi(m_stats.Livello);
+						if (m_stats.m_lvl >= 1 && m_stats.m_lvl <= 4) {
+							m_stats.m_bonus = 2;
+						}
+						else if (m_stats.m_lvl >= 5 && m_stats.m_lvl <= 8) {
+							m_stats.m_bonus = 3;
+						}
+						else if (m_stats.m_lvl >= 9 && m_stats.m_lvl <= 12) {
+							m_stats.m_bonus = 4;
+						}
+						else if (m_stats.m_lvl >= 13 && m_stats.m_lvl <= 16) {
+							m_stats.m_bonus = 5;
+						}
+						else if (m_stats.m_lvl >= 17 && m_stats.m_lvl <= 20) {
+							m_stats.m_bonus = 6;
+						}
+						std::stringstream ss;
+						ss << m_stats.m_bonus;
+						ss >> m_stats.Bonus;
+						m_text_output[0]->m_update_text(m_stats.Bonus);
+					}*/
+					if (m_text_input[7]->is_selected) {
+						m_stats.Forza = m_text_input[7]->get_text();
+						m_stats.Str = stoi(m_stats.Forza);
+						m_stats.StrMod = (m_stats.Str / 2) - 5;
+						std::stringstream ss;
+						ss << m_stats.StrMod;
+						ss >> m_stats.ModFor;
+						m_text_output[1]->m_update_text(m_stats.ModFor);
+						m_text_output[10]->m_update_text(m_stats.ModFor);
+						m_text_output[25]->m_update_text(m_stats.ModFor);
+						std::cout << "Str Modifier: " << m_stats.ModFor;
+						break;
+						
+					}
+					else if (m_text_input[8]->is_selected) {
+						m_stats.Intelligenza = m_text_input[8]->get_text();
+						m_stats.Int = stoi(m_stats.Intelligenza);
+						m_stats.IntMod = (m_stats.Int / 2) - 5;
+						std::stringstream ss;
+						ss << m_stats.IntMod;
+						ss >> m_stats.ModInt;
+						m_text_output[2]->m_update_text(m_stats.ModInt);
+						m_text_output[9]->m_update_text(m_stats.ModInt);
+						m_text_output[12]->m_update_text(m_stats.ModInt);
+						m_text_output[18]->m_update_text(m_stats.ModInt);
+						m_text_output[22]->m_update_text(m_stats.ModInt);
+						m_text_output[24]->m_update_text(m_stats.ModInt);
+						m_text_output[28]->m_update_text(m_stats.ModInt);
+						std::cout <<"Int Modifier: "<<m_stats.ModInt;
+						break;
+					}
+					else if (m_text_input[9]->is_selected) {
+						m_stats.Destrezza = m_text_input[9]->get_text();
+						m_stats.Dex = stoi(m_stats.Destrezza);
+						m_stats.DexMod = (m_stats.Dex / 2) - 5;
+						std::stringstream ss;
+						ss << m_stats.DexMod;
+						ss >> m_stats.ModDes;
+						m_text_output[3]->m_update_text(m_stats.ModDes);
+						m_text_output[7]->m_update_text(m_stats.ModDes);
+						m_text_output[11]->m_update_text(m_stats.ModDes);
+						m_text_output[21]->m_update_text(m_stats.ModDes);
+						m_text_output[26]->m_update_text(m_stats.ModDes);
+						std::cout << "Dex Modifier: "<<m_stats.ModDes;
+						break;
+					}
+					else if (m_text_input[10]->is_selected) {
+						m_stats.Saggeza = m_text_input[10]->get_text();
+						m_stats.Wis = stoi(m_stats.Saggeza);
+						m_stats.WisMod = (m_stats.Wis / 2) - 5;
+						std::stringstream ss;
+						ss << m_stats.WisMod;
+						ss >> m_stats.ModSag;
+						m_text_output[4]->m_update_text(m_stats.ModSag);
+						m_text_output[8]->m_update_text(m_stats.ModSag);
+						m_text_output[16]->m_update_text(m_stats.ModSag);
+						m_text_output[17]->m_update_text(m_stats.ModSag);
+						m_text_output[19]->m_update_text(m_stats.ModSag);
+						m_text_output[23]->m_update_text(m_stats.ModSag);
+						m_text_output[29]->m_update_text(m_stats.ModSag);
+						std::cout <<"Wis Modifier: "<<m_stats.ModSag;
+						break;
+					}
+					else if (m_text_input[11]->is_selected) {
+						m_stats.Costituzione = m_text_input[11]->get_text();
+						m_stats.Con = stoi(m_stats.Costituzione);
+						m_stats.ConMod = (m_stats.Con / 2) - 5;
+						std::stringstream ss;
+						ss << m_stats.ConMod;
+						ss >> m_stats.ModCos;
+						m_text_output[5]->m_update_text(m_stats.ModCos);
+						m_text_output[27]->m_update_text(m_stats.ModCos);
+						std::cout << "Con Modifier: " << m_stats.ModCos;
+						break;
+					}
+					else if (m_text_input[12]->is_selected) {
+						m_stats.Carisma = m_text_input[12]->get_text();
+						m_stats.Cha = stoi(m_stats.Carisma);
+						m_stats.ChaMod = (m_stats.Cha / 2) - 5;
+						std::stringstream ss;
+						ss << m_stats.ChaMod;
+						ss >> m_stats.ModCar;
+						m_text_output[6]->m_update_text(m_stats.ModCar);
+						m_text_output[13]->m_update_text(m_stats.ModCar);
+						m_text_output[14]->m_update_text(m_stats.ModCar);
+						m_text_output[15]->m_update_text(m_stats.ModCar);
+						m_text_output[20]->m_update_text(m_stats.ModCar);
+						m_text_output[30]->m_update_text(m_stats.ModCar);
+						std::cout << "Cha Modifier: " << m_stats.ModCar;
+						break;
+					}
+					else {
+						std::cout << "[Debug] Key: " << event.text.unicode << std::endl;
+						break;
+					}
+				}
+			}
 			else if (event.text.unicode == 59) {
 				for (TextInput* input_box : m_text_input) {
 					input_box->get_input(true);
@@ -144,6 +639,7 @@ void NewSheet::m_event_handler() {
 			else {
 				std::cout << "[Debug] Key: " << event.text.unicode << std::endl;
 			}
+
 
 
 
@@ -164,8 +660,9 @@ void NewSheet::main() {
 	m_window->draw(m_background);
 	
 	for (const auto& button : m_buttons) button->draw(m_window);
-	for (const auto& text : m_text_input) text->draw(m_window);
-	for (const auto& round_check : m_round_check_box) round_check->draw(m_window);
+	for (const auto& textinput: m_text_input) textinput->draw(m_window);
+	for (const auto& roundcheck : m_round_check_box) roundcheck->draw(m_window);
+	for (const auto& textoutput : m_text_output) textoutput->draw(m_window);
 
 
 	m_window->display();

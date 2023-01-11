@@ -14,7 +14,7 @@ LoadSheet::~LoadSheet() {
 
 void LoadSheet::m_load_widgets() {
 
-	m_buttons.push_back(new Button("C:\\Users\\39348\\source\\repos\\DnD\\DnD\\assets\\button.png", *m_fonts->at("BreatheFire"), sf::Vector2f(0.f, 0.f), sf::Vector2f(40.0, 40.f), "<-", 0));
+	m_buttons.push_back(new Button(globals::get_assets_path("button.png"), *m_fonts->at("BreatheFire"), sf::Vector2f(0.f, 0.f), sf::Vector2f(40.0, 40.f), "<-", 0));
 
 
 	for (const auto& button : m_buttons) {
@@ -24,7 +24,7 @@ void LoadSheet::m_load_widgets() {
 
 void LoadSheet::call_on_load() {
 	m_window = new sf::RenderWindow(sf::VideoMode(960, 540), "DnD - Carica Sheda", sf::Style::Titlebar | sf::Style::Close);
-	m_background_texture.loadFromFile("C:\\Users\\39348\\source\\repos\\DnD\\DnD\\assets\\NewSheetBg.jpg");
+	m_background_texture.loadFromFile(globals::get_assets_path("NewSheetBg.jpg"));
 	m_background.setTexture(m_background_texture);
 
 	m_load_widgets();

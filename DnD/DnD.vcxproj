@@ -155,6 +155,7 @@
   <ItemGroup>
     <ClInclude Include="src\CharacterSheet\LoadSheet\LoadSheet.h" />
     <ClInclude Include="src\CharacterSheet\NewSheet\NewSheet.h" />
+    <ClInclude Include="src\Globals.h" />
     <ClInclude Include="src\Menu\Menu.h" />
     <ClInclude Include="src\FightVisualizer\entities\GenericEntity.h" />
     <ClInclude Include="src\FightVisualizer\entities\Entity\Entity.h" />

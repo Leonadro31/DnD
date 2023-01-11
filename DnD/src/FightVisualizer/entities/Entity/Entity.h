@@ -4,7 +4,7 @@
 #include <string>
 
 #include "../GenericEntity.h"
-
+#include "../../../Globals.h"
 
 class Entity : public GenericEntity
 {

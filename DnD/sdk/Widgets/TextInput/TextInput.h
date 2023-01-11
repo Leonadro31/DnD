@@ -25,11 +25,11 @@ private:
 
 public:
 	bool is_selected = false;
-	
+
 	TextInput(sf::Font& font, const sf::Vector2f& position, const sf::Vector2f& size, const std::string& placeholder);
 	TextInput(sf::Font& font, const sf::Color& color, const sf::Vector2f& position, const sf::Vector2f& size, const std::string& placeholder);
 	~TextInput();
-	
+
 	void draw(sf::RenderWindow* window);
 	void get_input(char character);
 	void get_input(bool backspace);
@@ -45,4 +45,3 @@ public:
 	sf::Text* get_text_object() { return m_text; }
 	sf::RectangleShape* get_background_object() { return m_background; }
 };
-

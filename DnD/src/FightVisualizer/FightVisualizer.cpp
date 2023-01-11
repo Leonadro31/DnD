@@ -9,7 +9,9 @@ FightVisualizer::FightVisualizer(std::map<std::string, sf::Font*>* fonts, bool* 
 
 
 FightVisualizer::~FightVisualizer() {
-	for (const auto& entity : m_entities) delete entity;
+	m_entities.clear();
+	std::vector<GenericEntity*>().swap(m_entities);
+	delete m_world_editor;
 	delete m_fonts;
 	delete m_is_running;
 	delete m_current_tab;
@@ -32,21 +34,18 @@ void FightVisualizer::m_load_tiles() {
 }
 
 void FightVisualizer::m_load_textures() {
-	if (!m_background_texture.loadFromFile("C:\\Users\\39348\\source\\repos\\DnD\\DnD\\assets\\fight_visualizer_bg.png")) std::cout << "[-] Couldn't load FightVisualizer background texture." << std::endl;
+	if (!m_background_texture.loadFromFile(globals::get_assets_path("fight_visualizer_bg.png"))) std::cout << "[-] Couldn't load FightVisualizer background texture." << std::endl;
 	m_background.setTexture(m_background_texture);
 
-	/*if (!m_grid_texture.loadFromFile("C:\\Users\\39348\\source\\repos\\DnD\\DnD\\assets\\visualizer_grid.png")) std::cout << "[-] Couldn't load FightVisualizer grid texture." << std::endl;
-	m_grid.setTexture(m_grid_texture);
-	m_grid.setPosition(sf::Vector2f(297.f, 19.f));*/
 }
 
 void FightVisualizer::call_on_load() {
 	m_window = new sf::RenderWindow(sf::VideoMode(1280, 800), "DnD - Fight Visualizer", sf::Style::Titlebar | sf::Style::Close);
+	m_world_editor = new WorldEditor(sf::Vector2f(1100, 35));
 	m_load_widgets();
 	m_load_textures();
 	m_load_tiles();
-	m_entities.push_back(new Entity("C:\\Users\\39348\\source\\repos\\DnD\\DnD\\assets\\werewolf.png", sf::Vector2f(695.f,380.f), sf::Vector2f(100, 100), 100));
-	m_entities.push_back(new Entity("C:\\Users\\39348\\source\\repos\\DnD\\DnD\\assets\\entity_test.png", sf::Vector2f(600.f, 380.f), sf::Vector2f(100, 100), 100));
+	m_entities.push_back(new Entity(globals::get_assets_path("werewolf.png"), sf::Vector2f(695.f, 380.f), sf::Vector2f(100, 100), 100));
 }
 
 void FightVisualizer::m_events_handler() {
@@ -65,15 +64,31 @@ void FightVisualizer::m_events_handler() {
 		if (event.type == sf::Event::MouseButtonReleased) {
 			sf::Vector2i mouse_pos = sf::Vector2i(event.mouseButton.x, event.mouseButton.y);
 			std::cout << "[Debug] Click Pos: (" << mouse_pos.x << ", " << mouse_pos.y << ")" << std::endl;
-			for (const auto& entity : m_entities) entity->check_click(mouse_pos);
+			for (const auto& entity : m_entities) {
+				entity->check_click(mouse_pos);
+				if (entity->is_selected()) m_world_editor->clear_selection();
+			}
 
 			for (const auto& tile_row : m_tiles) {
 				for (const auto& tile : tile_row) {
 					tile->check_click(mouse_pos);
+
+					if (tile->is_selected() && m_world_editor->get_selected_type() != 0) {
+						int row = tile->row;
+						int col = tile->col;
+
+						delete tile;
+
+						m_tiles[row][col] = new Tile(m_world_editor->get_selected_type(), row, col);
+					}
 				}
 			}
 			
+			m_world_editor->check_click(mouse_pos);
+			
 		}
+
+		
 
 
 	}
@@ -91,7 +106,8 @@ void FightVisualizer::main() {
 
 	m_window->draw(m_background);
 	for (auto& tile_row : m_tiles) for (auto& tile : tile_row) tile->draw(m_window);
-//	m_window->draw(m_grid);
+
+	m_world_editor->draw(m_window);
 
 	for (const auto& entity : m_entities) entity->draw(m_window);
 	
