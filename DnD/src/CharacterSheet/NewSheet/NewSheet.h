@@ -61,6 +61,10 @@ struct Stats {
 	std::string Razza;
 	std::string BackGround;
 	std::string Bonus;
+	std::string Velocità;
+    std::string Iniziativa;
+	std::string Vita;
+
 	std::string Forza;
 	std::string Destrezza;
 	std::string Costituzione;
@@ -73,6 +77,9 @@ struct Stats {
 	std::string ModInt;
 	std::string ModSag;
 	std::string ModCar;
+
+	std::string SpellSaveDc;
+	std::string DadiVita;
 
 	bool m_ability_check_acrobazia= false;
 	bool m_ability_check_animali = false;
@@ -100,9 +107,11 @@ struct Stats {
 	bool m_sav_throw_wis = false;
 	bool m_sav_throw_cha = false;
 
-	int m_bonus=2;
+	int m_bonus;
 	int m_lvl;
-
+	int m_hp ;
+	int	m_hitdice;
+	int m_savedc;
 
 
 	int Str;

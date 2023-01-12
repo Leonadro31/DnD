@@ -198,12 +198,12 @@ void NewSheet::m_load_widgets() {
 	m_buttons.push_back(new Button(globals::get_assets_path("button.png"), *m_fonts->at("BreatheFire"), sf::Vector2f(0.f, 0.f), sf::Vector2f(40.0, 40.f), "<-", 0));
 	
 	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(69.f, 114.f), sf::Vector2f(240.0, 40.f),"")); //nome pg
-	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(518.f, 90.f), sf::Vector2f(210.0, 20.f), "")); // classe e lvl
-	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(754.f, 90.f), sf::Vector2f(170.0, 20.f), "")); // background
-	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(952.f, 90.f), sf::Vector2f(170.0, 20.f), "")); //nome player
-	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(518.f, 145.f), sf::Vector2f(210.0, 20.f), "")); //razza
-	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(754.f, 145.f), sf::Vector2f(170.0, 20.f), "")); // allineamento
-	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(952.f, 145.f), sf::Vector2f(170.0, 20.f), "")); //exp
+	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(518.f, 95.f), sf::Vector2f(210.0, 20.f), "")); // classe e lvl
+	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(754.f, 95.f), sf::Vector2f(170.0, 20.f), "")); // background
+	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(952.f, 95.f), sf::Vector2f(170.0, 20.f), "")); //nome player
+	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(518.f, 150.f), sf::Vector2f(210.0, 20.f), "")); //razza
+	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(754.f, 150.f), sf::Vector2f(170.0, 20.f), "")); // allineamento
+	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(952.f, 150.f), sf::Vector2f(170.0, 20.f), "")); //exp
 	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(44.f, 301.f), sf::Vector2f(55.0, 55.f), "")); //Forza
 	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(180.f, 300.f), sf::Vector2f(55.0, 55.f), "")); //Intelligenza
 	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(44.f, 450.f), sf::Vector2f(55.0, 55.f), "")); //dex
@@ -211,7 +211,9 @@ void NewSheet::m_load_widgets() {
 	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(44.f, 598.f), sf::Vector2f(55.0, 55.f), "")); //con
 	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(180.f, 598.f), sf::Vector2f(55.0, 55.f), "")); //cha
 	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(303.f, 265.f), sf::Vector2f(34.0, 34.f), "")); //Ispirazione
-	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(846.f, 285.f), sf::Vector2f(45.0, 45.f), "")); //Ispirazione
+	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(846.f, 285.f), sf::Vector2f(45.0, 45.f), "")); //CA
+	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(956.f, 430.f), sf::Vector2f(75.0, 55.f), "")); //vita att.
+	m_text_input.push_back(new TextInput(*m_fonts->at("BreatheFire"), sf::Vector2f(956.f, 539.f), sf::Vector2f(75.0, 55.f), "")); //vita temp.
 
 	m_round_check_box.push_back(new RoundCheckBox(sf::Vector2f(562.f,269.f),6, &m_stats.m_ability_check_acrobazia)); //acrobazia
 	m_round_check_box.push_back(new RoundCheckBox(sf::Vector2f(562.f, 297.f),6, &m_stats.m_ability_check_animali)); //addestrare animali
@@ -278,12 +280,19 @@ void NewSheet::m_load_text_box() {
 	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(591.f, 712.f), sf::Vector2f(15.0, 15.f), "")); //sopravvivenza
 	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(591.f, 740.f), sf::Vector2f(15.0, 15.f), "")); //storia
 
-	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(340.f, 428.f), sf::Vector2f(15.0, 15.f), ""));
-	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(340.f, 456.f), sf::Vector2f(15.0, 15.f), ""));
-	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(340.f, 484.f), sf::Vector2f(15.0, 15.f), ""));
-	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(340.f, 512.f), sf::Vector2f(15.0, 15.f), ""));
-	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(340.f, 540.f), sf::Vector2f(15.0, 15.f), ""));
-	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(340.f, 568.f), sf::Vector2f(15.0, 15.f), ""));
+	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(340.f, 428.f), sf::Vector2f(15.0, 15.f), "")); //forza sav
+	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(340.f, 456.f), sf::Vector2f(15.0, 15.f), "")); // dex sav
+	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(340.f, 484.f), sf::Vector2f(15.0, 15.f), ""));//con sav
+	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(340.f, 512.f), sf::Vector2f(15.0, 15.f), ""));//int sav
+	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(340.f, 540.f), sf::Vector2f(15.0, 15.f), ""));//wis sav
+	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(340.f, 568.f), sf::Vector2f(15.0, 15.f), ""));//cha sav
+
+	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(300.f, 662.f), sf::Vector2f(43.0, 43.f), ""));// pass. perc.
+	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(1020.f, 390.f), sf::Vector2f(100.0, 20.f), ""));// vita tot
+	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(963.f, 285.f), sf::Vector2f(45.0, 45.f), "")); //iniziat.
+	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(1084.f, 285.f), sf::Vector2f(45.0, 45.f), ""));//velocità
+	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(890.f, 646.f), sf::Vector2f(60.0, 15.f), ""));// dadi vita tot
+	m_text_output.push_back(new TextBox(*m_fonts->at("BreatheFire"), sf::Vector2f(875.f, 678.f), sf::Vector2f(55.0, 40.f), ""));//dadi vita att.
 
 	for (const auto& textoutput : m_text_output) {
 		textoutput->set_background_fill_color(sf::Color(0, 0, 0, 0));
@@ -494,7 +503,13 @@ void NewSheet::m_event_handler() {
 				if (!is_caps && !sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) pressed_letter = tolower(pressed_letter);
 
 				for (TextInput* input_box : m_text_input) {
-					input_box->get_input(pressed_letter);
+					if (m_text_input[7]->is_selected || m_text_input[8]->is_selected || m_text_input[9]->is_selected || m_text_input[10]->is_selected || m_text_input[11]->is_selected || m_text_input[12]->is_selected) {
+						std::cout << "[Debug] Key: " << event.text.unicode << std::endl;
+						break;
+					}
+					else { 
+						input_box->get_input(pressed_letter); 
+					}
 				}
 			}
 			else if (event.text.unicode == 57) {
@@ -510,9 +525,19 @@ void NewSheet::m_event_handler() {
 			}
 			else if (event.text.unicode == 58) {
 				for (TextInput* input_box : m_text_input) {
-					/*if (m_text_input[1]->is_selected) {
-						std::string X = m_text_input[0]->get_text();
-						X = m_stats.Classe + m_stats.Livello;
+					if (m_text_input[1]->is_selected) {
+						if (m_text_input[1]->get_text() == "") {
+							std::cout << "error" << std::endl;
+							break;
+						}
+						std::string given_str = m_text_input[1]->get_text();
+						std::string delim = " ";
+						size_t pos;
+						pos = given_str.find(delim);
+						m_stats.Classe = given_str.substr(0, pos);					
+						m_stats.Livello = given_str.substr(pos+1, given_str.size());
+						std::cout << m_stats.Classe<< std::endl;
+						std::cout << m_stats.Livello<< std::endl;
 						m_stats.m_lvl = stoi(m_stats.Livello);
 						if (m_stats.m_lvl >= 1 && m_stats.m_lvl <= 4) {
 							m_stats.m_bonus = 2;
@@ -533,97 +558,245 @@ void NewSheet::m_event_handler() {
 						ss << m_stats.m_bonus;
 						ss >> m_stats.Bonus;
 						m_text_output[0]->m_update_text(m_stats.Bonus);
-					}*/
-					if (m_text_input[7]->is_selected) {
-						m_stats.Forza = m_text_input[7]->get_text();
-						m_stats.Str = stoi(m_stats.Forza);
-						m_stats.StrMod = (m_stats.Str / 2) - 5;
-						std::stringstream ss;
-						ss << m_stats.StrMod;
-						ss >> m_stats.ModFor;
-						m_text_output[1]->m_update_text(m_stats.ModFor);
-						m_text_output[10]->m_update_text(m_stats.ModFor);
-						m_text_output[25]->m_update_text(m_stats.ModFor);
-						std::cout << "Str Modifier: " << m_stats.ModFor;
+						if (m_stats.Classe == "artefice") {
+							m_stats.m_hitdice = 10;
+							m_stats.m_savedc = 8 + m_stats.m_bonus + m_stats.IntMod;
+							std::stringstream ss;
+							ss << m_stats.m_hitdice;
+							ss >> m_stats.DadiVita;
+						}
+						else if (m_stats.Classe == "barbaro") {
+							m_stats.m_hitdice = 12;
+							std::stringstream ss;
+							ss << m_stats.m_hitdice;
+							ss >> m_stats.DadiVita;
+						}
+						else if (m_stats.Classe == "bardo") {
+							m_stats.m_hitdice = 8;
+							m_stats.m_savedc = 8 + m_stats.m_bonus + m_stats.ChaMod;
+							std::stringstream ss;
+							ss << m_stats.m_hitdice;
+							ss >> m_stats.DadiVita;
+						}
+						else if (m_stats.Classe == "chierico") {
+							m_stats.m_hitdice = 8;
+							m_stats.m_savedc = 8 + m_stats.m_bonus + m_stats.WisMod;
+							std::stringstream ss;
+							ss << m_stats.m_hitdice;
+							ss >> m_stats.DadiVita;
+						}
+						else if (m_stats.Classe == "druido") {
+							m_stats.m_hitdice = 8;
+							m_stats.m_savedc = 8 + m_stats.m_bonus + m_stats.WisMod;
+							std::stringstream ss;
+							ss << m_stats.m_hitdice;
+							ss >> m_stats.DadiVita;
+						}
+						else if (m_stats.Classe == "guerriero") {
+							m_stats.m_hitdice = 10;
+							std::stringstream ss;
+							ss << m_stats.m_hitdice;
+							ss >> m_stats.DadiVita;
+						}
+						else if (m_stats.Classe == "ladro") {
+							m_stats.m_hitdice = 8;
+							std::stringstream ss;
+							ss << m_stats.m_hitdice;
+							ss >> m_stats.DadiVita;
+						}
+						else if (m_stats.Classe == "mago") {
+							m_stats.m_hitdice = 6;
+							m_stats.m_savedc = 8 + m_stats.m_bonus + m_stats.IntMod;
+							std::stringstream ss;
+							ss << m_stats.m_hitdice;
+							ss >> m_stats.DadiVita;
+						}
+						else if (m_stats.Classe == "monaco") {
+							m_stats.m_hitdice = 8;
+							std::stringstream ss;
+							ss << m_stats.m_hitdice;
+							ss >> m_stats.DadiVita;
+						}
+						else if (m_stats.Classe == "paladino") {
+							m_stats.m_hitdice = 10;
+							m_stats.m_savedc = 8 + m_stats.m_bonus + m_stats.ChaMod;
+							std::stringstream ss;
+							ss << m_stats.m_hitdice;
+							ss >> m_stats.DadiVita;
+						}
+						else if (m_stats.Classe == "ranger") {
+							m_stats.m_hitdice = 10;
+							m_stats.m_savedc = 8 + m_stats.m_bonus + m_stats.WisMod;
+							std::stringstream ss;
+							ss << m_stats.m_hitdice;
+							ss >> m_stats.DadiVita;
+						}
+						else if (m_stats.Classe == "strgone") {
+							m_stats.m_hitdice = 8;
+							m_stats.m_savedc = 8 + m_stats.m_bonus + m_stats.ChaMod;
+							std::stringstream ss;
+							ss << m_stats.m_hitdice;
+							ss >> m_stats.DadiVita;
+						}
+						else if (m_stats.Classe == "warlock") {
+							m_stats.m_hitdice = 10;
+							m_stats.m_savedc = 8 + m_stats.m_bonus + m_stats.ChaMod;
+							std::stringstream ss;
+							ss << m_stats.m_hitdice;
+							ss >> m_stats.DadiVita;
+						}
+						else {
+							std::cout << "error";
+						}
+						std::string D = m_stats.Livello + "d" + m_stats.DadiVita;
+						std::cout << "Vita: " << m_stats.m_hp;
+						m_stats.m_hp = m_stats.m_hitdice + (m_stats.m_lvl - 1) * ((m_stats.m_hitdice / 2) + 1) + m_stats.m_lvl * ((m_stats.ConMod));
+						std::stringstream vv;
+						vv << m_stats.m_hp;
+						vv >> m_stats.Vita;
+						m_text_output[35]->m_update_text(D);
+						m_text_output[32]->m_update_text(m_stats.Vita);
 						break;
+					}
+					else if (m_text_input[2]->is_selected) {
+						m_stats.BackGround = m_text_input[2]->get_text();
+						std::cout << m_stats.BackGround << std::endl;
+						break;
+					}
+					else if (m_text_input[4]->is_selected) {
+						m_stats.Razza = m_text_input[4]->get_text();
+						std::cout << m_stats.Razza << std::endl;
+						break;
+					}
+					else if (m_text_input[7]->is_selected) {
+						if (m_text_input[7]->get_text() == "") {
+							std::cout << "error" << std::endl;
+							break;
+						}
+						else {
+							m_stats.Forza = m_text_input[7]->get_text();
+							m_stats.Str = stoi(m_stats.Forza);
+							m_stats.StrMod = (m_stats.Str / 2) - 5;
+							std::stringstream ss;
+							ss << m_stats.StrMod;
+							ss >> m_stats.ModFor;
+							m_text_output[1]->m_update_text(m_stats.ModFor);
+							m_text_output[10]->m_update_text(m_stats.ModFor);
+							m_text_output[25]->m_update_text(m_stats.ModFor);
+							std::cout << "Str Modifier: " << m_stats.ModFor;
+							break;
+						}
 						
 					}
 					else if (m_text_input[8]->is_selected) {
-						m_stats.Intelligenza = m_text_input[8]->get_text();
-						m_stats.Int = stoi(m_stats.Intelligenza);
-						m_stats.IntMod = (m_stats.Int / 2) - 5;
-						std::stringstream ss;
-						ss << m_stats.IntMod;
-						ss >> m_stats.ModInt;
-						m_text_output[2]->m_update_text(m_stats.ModInt);
-						m_text_output[9]->m_update_text(m_stats.ModInt);
-						m_text_output[12]->m_update_text(m_stats.ModInt);
-						m_text_output[18]->m_update_text(m_stats.ModInt);
-						m_text_output[22]->m_update_text(m_stats.ModInt);
-						m_text_output[24]->m_update_text(m_stats.ModInt);
-						m_text_output[28]->m_update_text(m_stats.ModInt);
-						std::cout <<"Int Modifier: "<<m_stats.ModInt;
-						break;
+						if (m_text_input[8]->get_text() == "") {
+							std::cout << "error" << std::endl;
+							break;
+						}
+						else{
+							m_stats.Intelligenza = m_text_input[8]->get_text();
+							m_stats.Int = stoi(m_stats.Intelligenza);
+							m_stats.IntMod = (m_stats.Int / 2) - 5;
+							std::stringstream ss;
+							ss << m_stats.IntMod;
+							ss >> m_stats.ModInt;
+							m_text_output[2]->m_update_text(m_stats.ModInt);
+							m_text_output[9]->m_update_text(m_stats.ModInt);
+							m_text_output[12]->m_update_text(m_stats.ModInt);
+							m_text_output[18]->m_update_text(m_stats.ModInt);
+							m_text_output[22]->m_update_text(m_stats.ModInt);
+							m_text_output[24]->m_update_text(m_stats.ModInt);
+							m_text_output[28]->m_update_text(m_stats.ModInt);
+							std::cout << "Int Modifier: " << m_stats.ModInt;
+							break;
+						}
+						
 					}
 					else if (m_text_input[9]->is_selected) {
-						m_stats.Destrezza = m_text_input[9]->get_text();
-						m_stats.Dex = stoi(m_stats.Destrezza);
-						m_stats.DexMod = (m_stats.Dex / 2) - 5;
-						std::stringstream ss;
-						ss << m_stats.DexMod;
-						ss >> m_stats.ModDes;
-						m_text_output[3]->m_update_text(m_stats.ModDes);
-						m_text_output[7]->m_update_text(m_stats.ModDes);
-						m_text_output[11]->m_update_text(m_stats.ModDes);
-						m_text_output[21]->m_update_text(m_stats.ModDes);
-						m_text_output[26]->m_update_text(m_stats.ModDes);
-						std::cout << "Dex Modifier: "<<m_stats.ModDes;
-						break;
+						if (m_text_input[9]->get_text() == "") {
+							std::cout << "error" << std::endl;
+							break;
+						}
+						else {
+							m_stats.Destrezza = m_text_input[9]->get_text();
+							m_stats.Dex = stoi(m_stats.Destrezza);
+							m_stats.DexMod = (m_stats.Dex / 2) - 5;
+							std::stringstream ss;
+							ss << m_stats.DexMod;
+							ss >> m_stats.ModDes;
+							m_text_output[3]->m_update_text(m_stats.ModDes);
+							m_text_output[7]->m_update_text(m_stats.ModDes);
+							m_text_output[11]->m_update_text(m_stats.ModDes);
+							m_text_output[21]->m_update_text(m_stats.ModDes);
+							m_text_output[26]->m_update_text(m_stats.ModDes);
+							std::cout << "Dex Modifier: " << m_stats.ModDes;
+							break;
+						}
 					}
 					else if (m_text_input[10]->is_selected) {
-						m_stats.Saggeza = m_text_input[10]->get_text();
-						m_stats.Wis = stoi(m_stats.Saggeza);
-						m_stats.WisMod = (m_stats.Wis / 2) - 5;
-						std::stringstream ss;
-						ss << m_stats.WisMod;
-						ss >> m_stats.ModSag;
-						m_text_output[4]->m_update_text(m_stats.ModSag);
-						m_text_output[8]->m_update_text(m_stats.ModSag);
-						m_text_output[16]->m_update_text(m_stats.ModSag);
-						m_text_output[17]->m_update_text(m_stats.ModSag);
-						m_text_output[19]->m_update_text(m_stats.ModSag);
-						m_text_output[23]->m_update_text(m_stats.ModSag);
-						m_text_output[29]->m_update_text(m_stats.ModSag);
-						std::cout <<"Wis Modifier: "<<m_stats.ModSag;
-						break;
+						if (m_text_input[10]->get_text() == "") {
+							std::cout << "error" << std::endl;
+							break;
+						}
+						else{
+							m_stats.Saggeza = m_text_input[10]->get_text();
+							m_stats.Wis = stoi(m_stats.Saggeza);
+							m_stats.WisMod = (m_stats.Wis / 2) - 5;
+							std::stringstream ss;
+							ss << m_stats.WisMod;
+							ss >> m_stats.ModSag;
+							m_text_output[4]->m_update_text(m_stats.ModSag);
+							m_text_output[8]->m_update_text(m_stats.ModSag);
+							m_text_output[16]->m_update_text(m_stats.ModSag);
+							m_text_output[17]->m_update_text(m_stats.ModSag);
+							m_text_output[19]->m_update_text(m_stats.ModSag);
+							m_text_output[23]->m_update_text(m_stats.ModSag);
+							m_text_output[29]->m_update_text(m_stats.ModSag);
+							std::cout << "Wis Modifier: " << m_stats.ModSag;
+							break;
+						}
+						
 					}
 					else if (m_text_input[11]->is_selected) {
-						m_stats.Costituzione = m_text_input[11]->get_text();
-						m_stats.Con = stoi(m_stats.Costituzione);
-						m_stats.ConMod = (m_stats.Con / 2) - 5;
-						std::stringstream ss;
-						ss << m_stats.ConMod;
-						ss >> m_stats.ModCos;
-						m_text_output[5]->m_update_text(m_stats.ModCos);
-						m_text_output[27]->m_update_text(m_stats.ModCos);
-						std::cout << "Con Modifier: " << m_stats.ModCos;
-						break;
+						if (m_text_input[11]->get_text() == "") {
+							std::cout << "error" << std::endl;
+							break;
+						}
+						else{
+							m_stats.Costituzione = m_text_input[11]->get_text();
+							m_stats.Con = stoi(m_stats.Costituzione);
+							m_stats.ConMod = (m_stats.Con / 2) - 5;
+							std::stringstream ss;
+							ss << m_stats.ConMod;
+							ss >> m_stats.ModCos;
+							m_text_output[5]->m_update_text(m_stats.ModCos);
+							m_text_output[27]->m_update_text(m_stats.ModCos);
+							std::cout << "Con Modifier: " << m_stats.ModCos;
+							break;
+						}
+						
 					}
 					else if (m_text_input[12]->is_selected) {
-						m_stats.Carisma = m_text_input[12]->get_text();
-						m_stats.Cha = stoi(m_stats.Carisma);
-						m_stats.ChaMod = (m_stats.Cha / 2) - 5;
-						std::stringstream ss;
-						ss << m_stats.ChaMod;
-						ss >> m_stats.ModCar;
-						m_text_output[6]->m_update_text(m_stats.ModCar);
-						m_text_output[13]->m_update_text(m_stats.ModCar);
-						m_text_output[14]->m_update_text(m_stats.ModCar);
-						m_text_output[15]->m_update_text(m_stats.ModCar);
-						m_text_output[20]->m_update_text(m_stats.ModCar);
-						m_text_output[30]->m_update_text(m_stats.ModCar);
-						std::cout << "Cha Modifier: " << m_stats.ModCar;
-						break;
+						if (m_text_input[12]->get_text() == "") {
+							std::cout << "error" << std::endl;
+							break;
+						}
+						else{
+							m_stats.Carisma = m_text_input[12]->get_text();
+							m_stats.Cha = stoi(m_stats.Carisma);
+							m_stats.ChaMod = (m_stats.Cha / 2) - 5;
+							std::stringstream ss;
+							ss << m_stats.ChaMod;
+							ss >> m_stats.ModCar;
+							m_text_output[6]->m_update_text(m_stats.ModCar);
+							m_text_output[13]->m_update_text(m_stats.ModCar);
+							m_text_output[14]->m_update_text(m_stats.ModCar);
+							m_text_output[15]->m_update_text(m_stats.ModCar);
+							m_text_output[20]->m_update_text(m_stats.ModCar);
+							m_text_output[30]->m_update_text(m_stats.ModCar);
+							std::cout << "Cha Modifier: " << m_stats.ModCar;
+							break;
+						}	
 					}
 					else {
 						std::cout << "[Debug] Key: " << event.text.unicode << std::endl;
