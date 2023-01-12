@@ -130,6 +130,7 @@ void DnD::main() {
 	m_fight_visualizer = new FightVisualizer(&m_fonts, &m_is_running, &m_current_tab);
 	m_character_sheet = new CharacterSheet(&m_fonts, &m_is_running, &m_current_tab);
 	m_new_sheet = new NewSheet(&m_fonts, &m_is_running, &m_current_tab);
+	m_new_sheet_2 =new NewSheet2(&m_fonts, &m_is_running, &m_current_tab, &m_new_sheet->m_stats);
 	m_load_sheet = new LoadSheet(&m_fonts, &m_is_running, &m_current_tab);
 
 	while (m_is_running) {
@@ -137,7 +138,9 @@ void DnD::main() {
 		else if (m_current_tab == "FightVisualizer") m_fight_visualizer->main();
 		else if (m_current_tab == "CharacterSheet") m_character_sheet->main();
 		else if (m_current_tab == "NewSheet") m_new_sheet->main();
+		else if (m_current_tab == "NewSheet2") m_new_sheet_2->main();
 		else if (m_current_tab == "LoadSheet") m_load_sheet->main();
+		
 	}
 
 }

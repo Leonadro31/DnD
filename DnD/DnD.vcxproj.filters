@@ -63,6 +63,9 @@
     <ClCompile Include="src\CharacterSheet\LoadSheet\LoadSheet.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
+    <ClCompile Include="src\CharacterSheet\NewSheet\NewSheet2.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\CharacterSheet\CharacterSheet.h">
@@ -117,6 +120,12 @@
       <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="src\Globals.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CharacterSheet\NewSheet\NewSheet2.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CharacterSheet\NewSheet\Stats.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
   </ItemGroup>

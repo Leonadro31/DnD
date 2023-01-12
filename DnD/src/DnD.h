@@ -13,7 +13,9 @@
 #include "Menu/Menu.h"
 #include "CharacterSheet/CharacterSheet.h"
 #include "CharacterSheet/NewSheet/NewSheet.h"
+#include "CharacterSheet/NewSheet/NewSheet2.h"
 #include "CharacterSheet/LoadSheet/LoadSheet.h"
+
 
 #include "Globals.h"
 
@@ -43,6 +45,7 @@ private:
 	FightVisualizer* m_fight_visualizer = nullptr;
 	CharacterSheet* m_character_sheet = nullptr;
 	NewSheet* m_new_sheet = nullptr;
+	NewSheet2* m_new_sheet_2 = nullptr;
 	LoadSheet* m_load_sheet = nullptr;
 	
 

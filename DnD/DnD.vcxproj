@@ -137,6 +137,7 @@
   <ItemGroup>
     <ClCompile Include="src\CharacterSheet\LoadSheet\LoadSheet.cpp" />
     <ClCompile Include="src\CharacterSheet\NewSheet\NewSheet.cpp" />
+    <ClCompile Include="src\CharacterSheet\NewSheet\NewSheet2.cpp" />
     <ClCompile Include="src\Menu\Menu.cpp" />
     <ClCompile Include="src\FightVisualizer\entities\GenericEntity.cpp" />
     <ClCompile Include="src\FightVisualizer\entities\Entity\Entity.cpp" />
@@ -155,6 +156,8 @@
   <ItemGroup>
     <ClInclude Include="src\CharacterSheet\LoadSheet\LoadSheet.h" />
     <ClInclude Include="src\CharacterSheet\NewSheet\NewSheet.h" />
+    <ClInclude Include="src\CharacterSheet\NewSheet\NewSheet2.h" />
+    <ClInclude Include="src\CharacterSheet\NewSheet\Stats.h" />
     <ClInclude Include="src\Globals.h" />
     <ClInclude Include="src\Menu\Menu.h" />
     <ClInclude Include="src\FightVisualizer\entities\GenericEntity.h" />
