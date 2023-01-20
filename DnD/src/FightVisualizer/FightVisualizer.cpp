@@ -10,7 +10,7 @@ FightVisualizer::FightVisualizer(std::map<std::string, sf::Font*>* fonts, bool* 
 
 FightVisualizer::~FightVisualizer() {
 	m_entities.clear();
-	std::vector<GenericEntity*>().swap(m_entities);
+	std::vector<Entity*>().swap(m_entities);
 	delete m_world_editor;
 	delete m_fonts;
 	delete m_is_running;
@@ -42,10 +42,14 @@ void FightVisualizer::m_load_textures() {
 void FightVisualizer::call_on_load() {
 	m_window = new sf::RenderWindow(sf::VideoMode(1280, 800), "DnD - Fight Visualizer", sf::Style::Titlebar | sf::Style::Close);
 	m_world_editor = new WorldEditor(sf::Vector2f(1100, 35));
+	m_entity_stats_editor = new EntityStatsEditor(sf::Vector2f(0, 0));
 	m_load_widgets();
 	m_load_textures();
 	m_load_tiles();
-	m_entities.push_back(new Entity(globals::get_assets_path("werewolf.png"), sf::Vector2f(695.f, 380.f), sf::Vector2f(100, 100), 100));
+	m_entities.push_back(new Entity(globals::get_assets_path("werewolf.png"), sf::Vector2f(695.f, 380.f), sf::Vector2f(100, 100)));
+	m_entities.push_back(new Entity(globals::get_assets_path("werewolf.png"), sf::Vector2f(695.f, 400.f), sf::Vector2f(100, 100)));
+	m_entities[0]->stats->vantaggio = true;
+	m_entities[1]->stats->deafned = true;
 }
 
 void FightVisualizer::m_events_handler() {
@@ -64,9 +68,12 @@ void FightVisualizer::m_events_handler() {
 		if (event.type == sf::Event::MouseButtonReleased) {
 			sf::Vector2i mouse_pos = sf::Vector2i(event.mouseButton.x, event.mouseButton.y);
 			std::cout << "[Debug] Click Pos: (" << mouse_pos.x << ", " << mouse_pos.y << ")" << std::endl;
-			for (const auto& entity : m_entities) {
+			for (auto entity : m_entities) {
 				entity->check_click(mouse_pos);
-				if (entity->is_selected()) m_world_editor->clear_selection();
+				if (entity->is_selected()) {
+					m_world_editor->clear_selection();
+					m_entity_stats_editor->set_selected_entity(entity);
+				}
 			}
 
 			for (const auto& tile_row : m_tiles) {
@@ -84,6 +91,7 @@ void FightVisualizer::m_events_handler() {
 				}
 			}
 			
+			m_entity_stats_editor->check_click(mouse_pos);
 			m_world_editor->check_click(mouse_pos);
 			
 		}
@@ -108,6 +116,7 @@ void FightVisualizer::main() {
 	for (auto& tile_row : m_tiles) for (auto& tile : tile_row) tile->draw(m_window);
 
 	m_world_editor->draw(m_window);
+	m_entity_stats_editor->draw(m_window);
 
 	for (const auto& entity : m_entities) entity->draw(m_window);
 	

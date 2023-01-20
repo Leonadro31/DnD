@@ -7,9 +7,9 @@
 #include <vector>
 #include <fstream>
 
-#include "C:\\Users\\39348\\source\\repos\\DnD\\DnD\sdk\Widgets\\include.h"
+#include "..\..\..\sdk\Widgets\include.h"
 #include "..\..\Globals.h"
-#include "Stats.h"
+#include "../../../sdk/entities/Entity/Stats.h"
 
 
 class NewSheet2

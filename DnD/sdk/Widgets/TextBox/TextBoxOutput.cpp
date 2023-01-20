@@ -1,8 +1,6 @@
-#include "TextInput.h"
+#include "TextBoxOutput.h"
 
-
-
-TextInput::TextInput(sf::Font& font, const sf::Vector2f& position, const sf::Vector2f& size, const std::string& placeholder) {
+TextBox::TextBox(sf::Font& font, const sf::Vector2f& position, const sf::Vector2f& size, const std::string& placeholder) {
 	m_text = new sf::Text();
 	m_background = new sf::RectangleShape();
 	m_line = new sf::RectangleShape();
@@ -27,13 +25,13 @@ TextInput::TextInput(sf::Font& font, const sf::Vector2f& position, const sf::Vec
 	m_background_border_color = sf::Color(68, 104, 120, 255);
 	m_background_fill_color = sf::Color(71, 121, 143, 255);
 	m_background_border_thickness = 3.f;
-	
+
 	m_center_text_in_rect();
 
 	std::cout << "[Debug] Created TextInput" << std::endl;
 }
 
-TextInput::TextInput(sf::Font& font, const sf::Color& color, const sf::Vector2f& position, const sf::Vector2f& size, const std::string& placeholder) {
+TextBox::TextBox(sf::Font& font, const sf::Color& color, const sf::Vector2f& position, const sf::Vector2f& size, const std::string& placeholder) {
 	m_text = new sf::Text();
 	m_background = new sf::RectangleShape();
 	m_line = new sf::RectangleShape();
@@ -47,7 +45,7 @@ TextInput::TextInput(sf::Font& font, const sf::Color& color, const sf::Vector2f&
 	m_background->setFillColor(sf::Color::White);
 	m_background->setOutlineColor(sf::Color::Black);
 	m_background->setOutlineThickness(5);
-	
+
 	m_line->setPosition(sf::Vector2f(position.x, position.y + size.y));
 	m_line->setSize(sf::Vector2f(size.x, m_background_border_thickness));
 	m_line->setFillColor(sf::Color::Black);
@@ -65,7 +63,7 @@ TextInput::TextInput(sf::Font& font, const sf::Color& color, const sf::Vector2f&
 
 }
 
-TextInput::~TextInput() {
+TextBox::~TextBox() {
 	std::cout << "[Debug] Deleting TextInput" << std::endl;
 	delete m_text;
 	delete m_background;
@@ -73,14 +71,14 @@ TextInput::~TextInput() {
 }
 
 
-void TextInput::m_center_text_in_rect() {
+void TextBox::m_center_text_in_rect() {
 	sf::FloatRect text_rect = m_text->getLocalBounds();
 	m_text->setOrigin(text_rect.left + text_rect.width / 2.0f, text_rect.top + text_rect.height / 2.0f);
 	m_text->setPosition(sf::Vector2f(m_position.x + m_size.x / 2, m_position.y + m_size.y / 2));
 }
 
 
-void TextInput::draw(sf::RenderWindow* win) {
+void TextBox::draw(sf::RenderWindow* win) {
 	win->draw(*m_background);
 	win->draw(*m_text);
 
@@ -95,7 +93,7 @@ void TextInput::draw(sf::RenderWindow* win) {
 }
 
 
-bool TextInput::check_click(const sf::Vector2i& mouse_pos) {
+bool TextBox::check_click(const sf::Vector2i& mouse_pos) {
 	if ((mouse_pos.x >= m_position.x && mouse_pos.x <= m_position.x + m_size.x) && (mouse_pos.y >= m_position.y && mouse_pos.y <= m_position.y + m_size.y)) {
 		is_selected = true;
 		std::cout << "[Debug] TextInput Selected" << std::endl;
@@ -106,7 +104,7 @@ bool TextInput::check_click(const sf::Vector2i& mouse_pos) {
 }
 
 
-void TextInput::get_input(char character) {
+void TextBox::get_input(char character) {
 	if (!is_selected) return;
 
 	m_placeholder.push_back(character);
@@ -121,7 +119,7 @@ void TextInput::get_input(char character) {
 	}
 }
 
-void TextInput::get_input(int number) {
+void TextBox::get_input(int number) {
 	if (!is_selected) return;
 
 	m_placeholder += std::to_string(number);
@@ -137,41 +135,42 @@ void TextInput::get_input(int number) {
 }
 
 
-void TextInput::get_input(bool backspace) {
+void TextBox::get_input(bool backspace) {
 	if (!is_selected) return;
 	if (m_placeholder.length() <= 0) return;
 
 	m_placeholder.pop_back();
-	m_text->setString(m_placeholder);	
+	m_text->setString(m_placeholder);
 	m_text->setString(m_placeholder);
 	m_center_text_in_rect();
 }
 
 
-void TextInput::set_position(const sf::Vector2f& position) {
+void TextBox::set_position(const sf::Vector2f& position) {
 	m_position = position;
 	m_text->setPosition(m_position);
 }
 
-void TextInput::set_font_size(int size) {
+void TextBox::set_font_size(int size) {
 	m_text->setCharacterSize(size);
 	m_center_text_in_rect();
 }
 
-void TextInput::set_background_fill_color(const sf::Color& color) {
+void TextBox::set_background_fill_color(const sf::Color& color) {
 	m_background_fill_color = color;
 	m_background->setFillColor(m_background_fill_color);
 }
 
 
-void TextInput::set_background_border_color(const sf::Color& color) {
+void TextBox::set_background_border_color(const sf::Color& color) {
 	m_background_border_color = color;
 	m_background->setOutlineColor(m_background_border_color);
 }
 
 
-void TextInput::set_background_border_thickness(float thickness) {
+void TextBox::set_background_border_thickness(float thickness) {
 	m_background_border_thickness = thickness;
 	m_background->setOutlineThickness(m_background_border_thickness);
 }
+
 

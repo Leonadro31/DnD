@@ -11,7 +11,7 @@
 
 #include "../../Globals.h"
 
-#include "../entities/Tile/Tile.h"
+#include "../../../sdk/entities/Tile/Tile.h"
 
 #include "../../../sdk/Widgets/include.h"
 

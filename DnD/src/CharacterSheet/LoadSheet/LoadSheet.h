@@ -9,7 +9,8 @@
 #include <Windows.h>
 #endif
 
-#include "C:\\Users\\39348\\source\\repos\\DnD\\DnD\sdk\Widgets\\include.h"
+
+#include "..\..\..\sdk\Widgets\include.h"
 #include "..\..\Globals.h"
 
 class LoadSheet

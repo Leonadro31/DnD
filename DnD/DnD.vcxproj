@@ -135,12 +135,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="sdk\Widgets\TextBox\TextBoxOutput.cpp" />
+    <ClCompile Include="src\FightVisualizer\EntityStatsEditor\EntityStatsEditor.cpp" />
     <ClCompile Include="src\CharacterSheet\LoadSheet\LoadSheet.cpp" />
     <ClCompile Include="src\CharacterSheet\NewSheet\NewSheet.cpp" />
     <ClCompile Include="src\CharacterSheet\NewSheet\NewSheet2.cpp" />
     <ClCompile Include="src\Menu\Menu.cpp" />
-    <ClCompile Include="src\FightVisualizer\entities\GenericEntity.cpp" />
-    <ClCompile Include="src\FightVisualizer\entities\Entity\Entity.cpp" />
+    <ClCompile Include="sdk\entities\GenericEntity.cpp" />
+    <ClCompile Include="sdk\entities\Entity\Entity.cpp" />
     <ClCompile Include="src\FightVisualizer\FightVisualizer.cpp" />
     <ClCompile Include="sdk\Widgets\RoundCheckBox\RoundCheckBox.cpp" />
     <ClCompile Include="sdk\Widgets\Button\Button.cpp" />
@@ -149,19 +151,21 @@
     <ClCompile Include="src\CharacterSheet\CharacterSheet.cpp" />
     <ClCompile Include="entry_point.cpp" />
     <ClCompile Include="sdk\Widgets\TextInput\TextInput.cpp" />
-    <ClCompile Include="src\FightVisualizer\entities\WorldEntity\WorldEntity.cpp" />
-    <ClCompile Include="src\FightVisualizer\entities\Tile\Tile.cpp" />
+    <ClCompile Include="sdk\entities\WorldEntity\WorldEntity.cpp" />
+    <ClCompile Include="sdk\entities\Tile\Tile.cpp" />
     <ClCompile Include="src\FightVisualizer\WorldEditor\WorldEditor.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="sdk\Widgets\TextBox\TextBoxOutput.h" />
+    <ClInclude Include="src\FightVisualizer\EntityStatsEditor\EntityStatsEditor.h" />
     <ClInclude Include="src\CharacterSheet\LoadSheet\LoadSheet.h" />
     <ClInclude Include="src\CharacterSheet\NewSheet\NewSheet.h" />
     <ClInclude Include="src\CharacterSheet\NewSheet\NewSheet2.h" />
-    <ClInclude Include="src\CharacterSheet\NewSheet\Stats.h" />
+    <ClInclude Include="sdk\entities\Entity\Stats.h" />
     <ClInclude Include="src\Globals.h" />
     <ClInclude Include="src\Menu\Menu.h" />
-    <ClInclude Include="src\FightVisualizer\entities\GenericEntity.h" />
-    <ClInclude Include="src\FightVisualizer\entities\Entity\Entity.h" />
+    <ClInclude Include="sdk\entities\GenericEntity.h" />
+    <ClInclude Include="sdk\entities\Entity\Entity.h" />
     <ClInclude Include="src\FightVisualizer\FightVisualizer.h" />
     <ClInclude Include="sdk\Widgets\RoundCheckBox\RoundCheckBox.h" />
     <ClInclude Include="sdk\Widgets\Button\Button.h" />
@@ -171,8 +175,8 @@
     <ClInclude Include="src\DnD.h" />
     <ClInclude Include="src\CharacterSheet\CharacterSheet.h" />
     <ClInclude Include="sdk\Widgets\TextInput\TextInput.h" />
-    <ClInclude Include="src\FightVisualizer\entities\WorldEntity\WorldEntity.h" />
-    <ClInclude Include="src\FightVisualizer\entities\Tile\Tile.h" />
+    <ClInclude Include="sdk\entities\WorldEntity\WorldEntity.h" />
+    <ClInclude Include="sdk\entities\Tile\Tile.h" />
     <ClInclude Include="src\FightVisualizer\WorldEditor\WorldEditor.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

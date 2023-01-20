@@ -8,7 +8,7 @@
 #include <Windows.h>
 #endif
 
-#include "../../Globals.h"
+#include "../../src/Globals.h"
 
 
 class GenericEntity

@@ -9,12 +9,13 @@
 #include <Windows.h>
 #endif
 
-#include "entities/GenericEntity.h"
-#include "entities/Entity/Entity.h"
-#include "entities/Tile/Tile.h"
-#include "entities/WorldEntity/WorldEntity.h"
+#include "../../sdk/entities/GenericEntity.h"
+#include "../../sdk/entities/Entity/Entity.h"
+#include "../../sdk/entities/Tile/Tile.h"
+#include "../../sdk/entities/WorldEntity/WorldEntity.h"
 
 #include "WorldEditor/WorldEditor.h"
+#include "EntityStatsEditor/EntityStatsEditor.h"
 
 #include "../Globals.h"
 
@@ -28,13 +29,13 @@ private:
 	sf::Texture m_background_texture;
 
 	WorldEditor* m_world_editor;
-
+	EntityStatsEditor* m_entity_stats_editor;
 
 	std::map<std::string, sf::Font*>* m_fonts = nullptr;
 
 	std::vector<std::vector<Tile*>> m_tiles; //19x19 tiles, 20x20 each
 
-	std::vector<GenericEntity*> m_entities;
+	std::vector<Entity*> m_entities;
 
 	bool* m_is_running;
 	std::string* m_current_tab;

@@ -5,7 +5,7 @@
 #include <string>
 
 #include "../GenericEntity.h"
-#include "../../../Globals.h"
+#include "../../../src/Globals.h"
 class Tile : public GenericEntity
 {
 private:

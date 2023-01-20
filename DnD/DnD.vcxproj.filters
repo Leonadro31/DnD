@@ -39,19 +39,19 @@
     <ClCompile Include="src\FightVisualizer\FightVisualizer.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
-    <ClCompile Include="src\FightVisualizer\entities\WorldEntity\WorldEntity.cpp">
+    <ClCompile Include="sdk\entities\WorldEntity\WorldEntity.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
-    <ClCompile Include="src\FightVisualizer\entities\Entity\Entity.cpp">
+    <ClCompile Include="sdk\entities\Entity\Entity.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
-    <ClCompile Include="src\FightVisualizer\entities\GenericEntity.cpp">
+    <ClCompile Include="sdk\entities\GenericEntity.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
     <ClCompile Include="src\Menu\Menu.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
-    <ClCompile Include="src\FightVisualizer\entities\Tile\Tile.cpp">
+    <ClCompile Include="sdk\entities\Tile\Tile.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
     <ClCompile Include="src\FightVisualizer\WorldEditor\WorldEditor.cpp">
@@ -64,6 +64,12 @@
       <Filter>File di origine</Filter>
     </ClCompile>
     <ClCompile Include="src\CharacterSheet\NewSheet\NewSheet2.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FightVisualizer\EntityStatsEditor\EntityStatsEditor.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\Widgets\TextBox\TextBoxOutput.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
   </ItemGroup>
@@ -95,19 +101,19 @@
     <ClInclude Include="src\FightVisualizer\FightVisualizer.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
-    <ClInclude Include="src\FightVisualizer\entities\WorldEntity\WorldEntity.h">
+    <ClInclude Include="sdk\entities\WorldEntity\WorldEntity.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
-    <ClInclude Include="src\FightVisualizer\entities\Entity\Entity.h">
+    <ClInclude Include="sdk\entities\Entity\Entity.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
-    <ClInclude Include="src\FightVisualizer\entities\GenericEntity.h">
+    <ClInclude Include="sdk\entities\GenericEntity.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="src\Menu\Menu.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
-    <ClInclude Include="src\FightVisualizer\entities\Tile\Tile.h">
+    <ClInclude Include="sdk\entities\Tile\Tile.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="src\FightVisualizer\WorldEditor\WorldEditor.h">
@@ -125,7 +131,13 @@
     <ClInclude Include="src\CharacterSheet\NewSheet\NewSheet2.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
-    <ClInclude Include="src\CharacterSheet\NewSheet\Stats.h">
+    <ClInclude Include="sdk\entities\Entity\Stats.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FightVisualizer\EntityStatsEditor\EntityStatsEditor.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\Widgets\TextBox\TextBoxOutput.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
   </ItemGroup>

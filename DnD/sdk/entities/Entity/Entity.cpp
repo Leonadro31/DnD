@@ -1,14 +1,34 @@
 #include "Entity.h"
 
 
-Entity::Entity(const std::string& texture_path, const sf::Vector2f& position, const sf::Vector2f& size, int health_points) : GenericEntity(texture_path, position, size) {
-	m_health = health_points;
+Entity::Entity(const std::string& texture_path, const sf::Vector2f& position, const sf::Vector2f& size, Stats* stats) : GenericEntity(texture_path, position, size) {
+
+	this->stats = stats;
+	m_health = this->stats->m_hp;
+
+#ifdef DEBUG_ENTITIES
+	std::cout << "[Debug] Entity created." << std::endl;
+#endif
+}
+
+
+Entity::Entity(const std::string& texture_path, const sf::Vector2f& position, const sf::Vector2f& size) : GenericEntity(texture_path, position, size) {
+	this->stats = new Stats();
+#ifdef DEBUG_ENTITIES
+	std::cout << "[Debug] Entity created." << std::endl;
+#endif
+}
+
+Entity::Entity(const std::string& texture_path, const sf::Vector2f& position, const sf::Vector2f& size, int hp) : GenericEntity(texture_path, position, size) {
+	m_health = hp;
+
 #ifdef DEBUG_ENTITIES
 	std::cout << "[Debug] Entity created." << std::endl;
 #endif
 }
 
 Entity::~Entity() {
+	delete this->stats;
 #ifdef DEBUG_ENTITIES
 	std::cout << "[Debug] Entity destructed." << std::endl;
 #endif
@@ -30,9 +50,9 @@ void Entity::check_click(const sf::Vector2i& mouse_pos) {
 }
 
 void Entity::draw(sf::RenderWindow* window) {
-	if (m_health > 0) {
+
 		window->draw(m_sprite);
 		if (m_is_selected) window->draw(m_marker);
-	}
+	
 
 }

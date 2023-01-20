@@ -8,7 +8,7 @@
 #include <Windows.h>
 #endif
 
-class TextInput
+class TextBox
 {
 private:
 	sf::Text* m_text;
@@ -22,13 +22,12 @@ private:
 	int line_animation_count = 0;
 
 	void m_center_text_in_rect();
-
 public:
 	bool is_selected = false;
 
-	TextInput(sf::Font& font, const sf::Vector2f& position, const sf::Vector2f& size, const std::string& placeholder);
-	TextInput(sf::Font& font, const sf::Color& color, const sf::Vector2f& position, const sf::Vector2f& size, const std::string& placeholder);
-	~TextInput();
+	TextBox(sf::Font& font, const sf::Vector2f& position, const sf::Vector2f& size, const std::string& placeholder);
+	TextBox(sf::Font& font, const sf::Color& color, const sf::Vector2f& position, const sf::Vector2f& size, const std::string& placeholder);
+	~TextBox();
 
 	void draw(sf::RenderWindow* window);
 	void get_input(char character);
@@ -41,6 +40,10 @@ public:
 	void set_background_fill_color(const sf::Color& color);
 	void set_background_border_color(const sf::Color& color);
 	void set_background_border_thickness(float thickness);
+	void m_update_text(const std::string& output) {
+		m_text->setString(output);
+		m_center_text_in_rect();
+	}
 
 	sf::Text* get_text_object() { return m_text; }
 	sf::RectangleShape* get_background_object() { return m_background; }

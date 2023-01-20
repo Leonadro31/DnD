@@ -11,7 +11,7 @@
 
 #include "../../sdk/Widgets/include.h"
 
-#include "../FightVisualizer/entities/Entity/Entity.h"
+#include "../../sdk/entities/Entity/Entity.h"
 #include "../Globals.h"
 
 class CharacterSheet
