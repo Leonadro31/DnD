@@ -58,7 +58,7 @@ struct Stats {
 
 
 	int m_hp = 0;//
-	int armorclass;
+	int armorclass; 
 	int speed;
 	int exhaustion = 0;
 	bool vantaggio = false, svantaggio = false;

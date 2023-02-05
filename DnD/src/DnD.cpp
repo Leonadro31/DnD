@@ -118,6 +118,7 @@ void DnD::m_load_fonts() {
 
 	m_fonts.insert({ "Arial", arial });
 	m_fonts.insert({ "BreatheFire", breathefire });
+	globals::fonts = m_fonts;
 
 
 }

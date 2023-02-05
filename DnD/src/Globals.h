@@ -4,6 +4,8 @@
 #include <string>
 #include <map>
 
+#include <SFML/Graphics.hpp>
+
 #ifdef _WIN64
 #include <Windows.h>
 #endif
@@ -17,7 +19,7 @@
 
 namespace globals {
 	inline std::string userprofile;
-
+	inline std::map<std::string, sf::Font*> fonts;
 
 	__forceinline std::string get_assets_path(const std::string& path_from_assets_folder) {
 		if (userprofile.empty()) {

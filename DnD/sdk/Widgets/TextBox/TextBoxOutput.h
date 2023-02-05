@@ -19,6 +19,7 @@ private:
 	sf::Color m_background_fill_color, m_background_border_color;
 	float m_background_border_thickness = 3.f;
 
+
 	int line_animation_count = 0;
 
 	void m_center_text_in_rect();
@@ -40,6 +41,7 @@ public:
 	void set_background_fill_color(const sf::Color& color);
 	void set_background_border_color(const sf::Color& color);
 	void set_background_border_thickness(float thickness);
+
 	void m_update_text(const std::string& output) {
 		m_text->setString(output);
 		m_center_text_in_rect();

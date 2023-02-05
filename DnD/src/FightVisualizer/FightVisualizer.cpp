@@ -46,10 +46,12 @@ void FightVisualizer::call_on_load() {
 	m_load_widgets();
 	m_load_textures();
 	m_load_tiles();
-	m_entities.push_back(new Entity(globals::get_assets_path("werewolf.png"), sf::Vector2f(695.f, 380.f), sf::Vector2f(100, 100)));
+	m_entities.push_back(new Entity(globals::get_assets_path("werewolf.png"), sf::Vector2f(695.f, 380.f), sf::Vector2f(40, 40)));
 	m_entities.push_back(new Entity(globals::get_assets_path("werewolf.png"), sf::Vector2f(695.f, 400.f), sf::Vector2f(100, 100)));
 	m_entities[0]->stats->vantaggio = true;
+	m_entities[0]->stats->Nome = "Ernesto";
 	m_entities[1]->stats->deafned = true;
+	m_entities[1]->stats->Nome = "D'Annunzio";
 }
 
 void FightVisualizer::m_events_handler() {
@@ -73,6 +75,7 @@ void FightVisualizer::m_events_handler() {
 				if (entity->is_selected()) {
 					m_world_editor->clear_selection();
 					m_entity_stats_editor->set_selected_entity(entity);
+					break;
 				}
 			}
 
@@ -96,6 +99,7 @@ void FightVisualizer::m_events_handler() {
 			
 		}
 
+		m_entity_stats_editor->check_keyboard(event);
 		
 
 
